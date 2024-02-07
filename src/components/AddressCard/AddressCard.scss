@@ -15,25 +15,39 @@
             display: flex;
         }
     }
-
 }
 
 .card{
     &__title{
         font-weight: bold;
-        color: $slate
+        color: $slate;
+    }
+    &__title-address{
+        @include tablet{
+            width: 200px;
+        }
     }
     &__address-div{
         @include tablet{
-            margin-right: 7rem;
+            margin-right: 4rem;
+        }
+        @include desktop{
+            margin-right: 15rem;
         }
     }
     &__information-div{
         display: flex;
-        gap: 3rem;
+        justify-content: space-between;
+        margin-right: 3rem;
+        gap:3rem;
         @include tablet{
+            width: 100%;
+            margin-right: 2rem;
             border-left: 1px solid $cloud;
             padding-left: 3rem;
+        }
+        @include desktop{
+            margin-right: 5rem;
         }
     }
 

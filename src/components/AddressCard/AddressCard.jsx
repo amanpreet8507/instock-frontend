@@ -6,7 +6,7 @@ const AddressCard = () => {
   return (     
     <div className='main__div'>
       <div className='card__address-div'>
-        <p className='card__title'>WAREHOUSE ADDRESS:</p>
+        <p className='card__title card__title-address'>WAREHOUSE ADDRESS:</p>
         <p>Address</p>
       </div>
       <div className='card__information-div'>
