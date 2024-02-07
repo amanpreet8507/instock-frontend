@@ -1,3 +1,6 @@
+// responsive screen breakpoints
+$tablet-breakpoint: 768px;
+$desktop-breakpoint: 1024px;
 //MOBILE font-size & line-height
 //H1 pageheader
 $mobile-H1-font: 28px;
@@ -43,3 +46,6 @@ $desktop-p-height-medium: 22px;
 //paragraph (small)
 $desktop-p-font-small: 12px;
 $desktop-p-height-small: 18px;
+//paddings
+$mobile-padding: 16px;
+$tablet-padding: 32px;

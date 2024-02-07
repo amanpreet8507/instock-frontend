@@ -1,0 +1,15 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+
+.item-button{
+    border-style: none;
+    background-color: $white;
+    display: flex;
+    align-items: center;
+    color: $indigo;
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+    }
+}

@@ -1,0 +1,29 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+
+// Moblie Card
+.card{
+    &__inventory{
+        border-bottom: 1px solid $cloud;
+        padding: $mobile-padding;
+        @include tablet{
+            display: none;
+            padding: $tablet-padding;
+        }
+    }
+    &__info-div{
+        display: flex;
+        gap: 3rem;
+    }
+    &__title{
+        font-weight: bold;
+        color: $slate
+    }
+    &__icons{
+        display: flex;
+        justify-content: space-between;
+        padding: 0 .3rem;
+    }
+}
+

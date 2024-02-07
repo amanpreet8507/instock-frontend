@@ -2,8 +2,14 @@ import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
+<<<<<<< HEAD
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage";
+=======
+import InventoryDetailsPage from './pages/InventoryDetailsPage/InventoryDetailsPage';
+import WarehouseDetailsPage from './pages/WarehouseDetailsPage/WarehouseDetailsPage'
+
+>>>>>>> develop
 
 function App() {
   return (

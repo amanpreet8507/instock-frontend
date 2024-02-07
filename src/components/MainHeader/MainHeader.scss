@@ -1,0 +1,61 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+
+.main{
+    &__header-div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+    &__div{
+        border-bottom: 1px solid $cloud;
+        padding: $mobile-padding;
+        @include tablet{
+            padding: $tablet-padding;
+        }
+    }
+
+}
+
+.header{
+    &__icon-and-heading{
+        display: flex;
+        gap: 1rem;
+    }
+    &__link{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+
+    &__edit-div{
+        display: flex;
+        text-align: center;
+        align-items: center;
+        padding: 0 1rem;
+
+        @include tablet{
+            background-color: $indigo;
+            border-radius: 20px;
+            height: 38px;
+            display: flex;
+            font-weight: bold;
+        }
+    }
+    &__edit-icon{
+        background-color: $indigo;
+        color: $white;
+        border-radius: 100%;
+        padding: 0.2rem;
+    }
+    &__edit-p{
+        display: none;
+        color: $white;
+        @include tablet{
+            display: block;
+        }
+    }
+}

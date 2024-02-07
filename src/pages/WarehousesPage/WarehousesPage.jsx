@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 import React from "react";
 import Header from "../../components/Header/Header";
 
+=======
+>>>>>>> develop
 const WarehousesPage = () => {
   return (
     <div>
