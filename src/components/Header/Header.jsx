@@ -1,8 +1,8 @@
 import "../Header/Header.scss";
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo/InStock-Logo.svg";
-import NavButton from "../NavButton/NavButton";
+// import NavButton from "../NavButton/NavButton";
 
 const Header = () => {
   return (
@@ -14,12 +14,15 @@ const Header = () => {
       </div>
       <nav className="header__nav">
         <li className="header__nav--list">
-          <Link to="/warehouses">
-            <NavButton>Warehouses</NavButton>
-          </Link>
+          <NavLink
+            to="/warehouses"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Warehouses
+          </NavLink>
         </li>
         <li className="header__nav--list">
-          <Link to="/inventory">Inventory</Link>
+          <NavLink to="/inventory">Inventory</NavLink>
         </li>
       </nav>
     </div>
