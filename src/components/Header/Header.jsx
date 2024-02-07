@@ -2,7 +2,6 @@ import "../Header/Header.scss";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo/InStock-Logo.svg";
-// import NavButton from "../NavButton/NavButton";
 
 const Header = () => {
   return (
