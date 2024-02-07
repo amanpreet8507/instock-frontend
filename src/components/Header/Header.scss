@@ -1,2 +1,17 @@
 @use "../../../styles/partials/variables" as *;
 @use "../../../styles/partials/mixins" as *;
+@use "../../../styles/partials/global" as *;
+@use "../../../styles/partials/typography" as *;
+
+header {
+  font-family: "Titillium", "Arial", sans-serif, serif;
+  background-color: $graphite;
+  display: flex;
+  &__logo {
+  }
+  &__nav {
+    &--list {
+      list-style: none;
+    }
+  }
+}
