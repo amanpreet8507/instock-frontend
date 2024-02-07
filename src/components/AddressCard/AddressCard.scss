@@ -1,0 +1,54 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+
+.main{
+    &__header-div{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__div{
+        border-bottom: 1px solid $cloud;
+        padding: $mobile-padding;
+        @include tablet{
+            padding: $tablet-padding;
+            display: flex;
+        }
+    }
+}
+
+.card{
+    &__title{
+        font-weight: bold;
+        color: $slate;
+    }
+    &__title-address{
+        @include tablet{
+            width: 200px;
+        }
+    }
+    &__address-div{
+        @include tablet{
+            margin-right: 4rem;
+        }
+        @include desktop{
+            margin-right: 15rem;
+        }
+    }
+    &__information-div{
+        display: flex;
+        justify-content: space-between;
+        margin-right: 3rem;
+        gap:3rem;
+        @include tablet{
+            width: 100%;
+            margin-right: 2rem;
+            border-left: 1px solid $cloud;
+            padding-left: 3rem;
+        }
+        @include desktop{
+            margin-right: 5rem;
+        }
+    }
+
+}
