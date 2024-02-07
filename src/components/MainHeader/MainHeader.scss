@@ -30,15 +30,16 @@
         align-items: center;
         text-align: center;
     }
-
     &__edit-div{
         display: flex;
         text-align: center;
         align-items: center;
-        padding: 0 1rem;
+        border-radius: 100%;
+        padding: .2rem;
+        background-color: $indigo;
 
         @include tablet{
-            background-color: $indigo;
+            padding: 0 1rem;
             border-radius: 20px;
             height: 38px;
             display: flex;
@@ -46,10 +47,9 @@
         }
     }
     &__edit-icon{
-        background-color: $indigo;
-        color: $white;
         border-radius: 100%;
         padding: 0.2rem;
+        filter: brightness(0) invert(1)
     }
     &__edit-p{
         display: none;
