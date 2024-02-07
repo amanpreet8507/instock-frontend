@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
 import InventoryDetailsPage from './pages/InventoryDetailsPage/InventoryDetailsPage';
-import WarehouseDetailsPage from './pages/WarehouseDetailsPage/WarehouseDetailsPage';
+import WarehouseDetailsPage from './pages/WarehouseDetailsPage/WarehouseDetailsPage'
 
 
 function App() {
