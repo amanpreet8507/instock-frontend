@@ -1,0 +1,12 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+
+.main{
+    margin: $mobile-padding;
+    background-color: $white;
+    border-radius: 4px;
+    @include tablet{
+        margin: $tablet-padding;
+    }
+}

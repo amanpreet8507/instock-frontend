@@ -1,0 +1,14 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+
+.status{
+    &__alert{
+        color: $red;
+        background-color: $light-red;
+        padding: 0 .5rem;
+        border-radius: 20px;
+        font-weight: 600;
+        margin: 0;
+    }
+}
