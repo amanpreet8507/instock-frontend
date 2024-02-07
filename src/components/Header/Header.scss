@@ -1,17 +1,24 @@
-@use "../../../styles/partials/variables" as *;
-@use "../../../styles/partials/mixins" as *;
-@use "../../../styles/partials/global" as *;
-@use "../../../styles/partials/typography" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
 
-header {
+.header {
   font-family: "Titillium", "Arial", sans-serif, serif;
   background-color: $graphite;
+  height: 10rem;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   &__logo {
+    padding: 2rem;
   }
   &__nav {
+    display: flex;
     &--list {
       list-style: none;
+      flex-direction: row;
     }
   }
 }
