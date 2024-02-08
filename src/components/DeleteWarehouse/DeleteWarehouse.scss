@@ -1,3 +1,27 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/global" as *;
 @use "../../styles/partials/mixins" as *;
+
+.overlay{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__modal{
+        background-color: $white;
+        padding: 1rem;
+        border-radius: 0.6rem;
+        position: relative;
+        width: 80%;
+        max-width: 500px;
+    }
+    &__close{
+        cursor: pointer;
+    }
+}
