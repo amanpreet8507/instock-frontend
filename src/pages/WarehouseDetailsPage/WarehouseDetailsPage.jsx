@@ -4,7 +4,7 @@ import MainHeader from '../../components/MainHeader/MainHeader';
 import InventoryItemCard from '../../components/InventoryItemCard/InventoryItemCard';
 import './WarehouseDetailsPage.scss';
 import InventoryTable from '../../components/InventoryTable/InventoryTable';
-
+import Footer from '../../components/Footer/Footer';
 const WarehouseDetailsPage = () => {
   return (
     <>
@@ -15,6 +15,7 @@ const WarehouseDetailsPage = () => {
         <InventoryItemCard/>
         <InventoryTable/>
       </main>
+      <Footer/>
     </>
   )
 }

@@ -38,7 +38,6 @@
     &__information-div{
         display: flex;
         justify-content: space-between;
-        margin-right: 3rem;
         gap:3rem;
         @include tablet{
             width: 100%;
