@@ -14,7 +14,9 @@
     }
     &__info-div{
         display: flex;
-        gap: 3rem;
+        justify-content: space-between;
+        margin-right: 8rem;
+
     }
     &__title{
         font-weight: bold;
