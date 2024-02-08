@@ -30,13 +30,11 @@
     display: flex;
     justify-content: space-between;
     text-align: center;
-    border-radius: 20px;
-    padding: 0 0 0.5rem 1rem;
+    border-radius: 30px;
+   // padding: 0 0 0.5rem 1rem;
     border: 1px solid $slate;
-    width: 80%;
-    height: 2.25rem;
+    width: 100%;
     @include tablet {
-      border-radius: 20px;
       justify-content: space-between;
       height: 2.38rem;
       width: 12rem;
@@ -47,31 +45,34 @@
   }
   &__search-icon {
     border-radius: 100%;
-    padding-top: 1rem;
     padding-right: 1rem;
     @include tablet {
-      // padding-bottom: 1rem;
+     padding-top: 0.8rem;
+     padding-bottom: 0.1rem;
     }
   }
   &__search-p {
     color: $slate;
+    padding-left: 1rem;
     @include tablet {
       display: block;
-      padding-right: 3rem;
-      padding-top: 0.7rem;
+    //  padding-right: 3rem;
+      padding-top: 0.5rem;
     }
   }
   &__add-div {
-    text-align: center;
-    border-radius: 20px;
-    padding-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding-bottom: 0.5rem;
     background-color: $indigo;
-    width: 80%;
+    width: 100%;
     top: 17rem;
-    height: 2.25rem;
+    //height: 2.25rem;
     @include tablet {
       padding: 0 1rem;
-      border-radius: 20px;
+      border-radius: 30px;
       height: 2.38rem;
       display: flex;
       font-weight: bold;
@@ -81,7 +82,7 @@
   &__add-p {
     color: $white;
     @include tablet {
-      padding-top: 0.5rem;
+     // padding-top: 0.5rem;
     }
   }
 }
