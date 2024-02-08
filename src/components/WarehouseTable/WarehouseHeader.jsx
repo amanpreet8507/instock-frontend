@@ -2,7 +2,7 @@ import "./WarehouseHeader.scss";
 import searchIcon from "./../../assets/icons/search-24px.svg";
 import editIcon from "./../../assets/icons/edit-24px.svg";
 
-const WarehouseHeader = () => {
+const WarehouseHeader = ({addWarehouse}) => {
   return (
     <>
       <div className="warehouseheading__div main__warehouseHeader-div">
@@ -14,7 +14,7 @@ const WarehouseHeader = () => {
           <img className="header__search-icon" src={searchIcon}></img>
         </div>
 
-        <div className="header__add-div">
+        <div onClick={addWarehouse} className="header__add-div">
           <p className="header__add-p">+ Add New Warehouse</p>
         </div>
       </div>
