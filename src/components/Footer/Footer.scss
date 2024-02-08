@@ -3,9 +3,9 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/typography" as *;
 
-.footer {
+.footer__container {
   text-align: center;
-  &__text {
+  &--text {
     font-family: "Titillium", "Arial", sans-serif;
     color: $slate;
     background-color: $light-grey;

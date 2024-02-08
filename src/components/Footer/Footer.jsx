@@ -3,8 +3,10 @@ import "../Header/Header.scss";
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <p className="footer__text">© InStock Inc. All Rights Reserved.</p>
+    <div className="footer__container">
+      <p className="footer__container--text">
+        © InStock Inc. All Rights Reserved.
+      </p>
     </div>
   );
 };
