@@ -1,20 +1,19 @@
-<<<<<<< HEAD
-import React from "react";
+import './WarehousesPage.scss';
 import Header from "../../components/Header/Header";
-=======
+import WarehouseHeader from '../../components/WarehouseTable/WarehouseHeader';
+import WarehouseTable from "../../components/WarehouseTable/WarehouseTable";
 import Footer from "../../components/Footer/Footer";
->>>>>>> develop
 
 const WarehousesPage = () => {
   return (
-    <div>
-<<<<<<< HEAD
+    <>
       <Header />
-=======
-      <Footer />
->>>>>>> develop
-    </div>
-  );
-};
+      <main className="main">
+      <WarehouseHeader />
+      <WarehouseTable />
+    </main>
+    <Footer />
+    </>
+  )}
 
 export default WarehousesPage;
