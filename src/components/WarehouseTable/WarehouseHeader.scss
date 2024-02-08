@@ -1,0 +1,87 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+
+.main__warehouseHeader-div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @include tablet {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+}
+.warehouseheading__div {
+  border-bottom: 1px solid $cloud;
+  padding: $mobile-padding;
+  @include tablet {
+    padding: $tablet-padding;
+  }
+}
+.header {
+  &__heading__div {
+    margin-right: auto;
+  }
+  &__search-div {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    border-radius: 20px;
+    padding: 0 0 0.5rem 1rem;
+    border: 1px solid $slate;
+    width: 80%;
+    height: 2.25rem;
+    @include tablet {
+      border-radius: 20px;
+      justify-content: space-between;
+      height: 2.38rem;
+      width: 12rem;
+      display: flex;
+      font-weight: bold;
+      border: 1px solid $slate;
+    }
+  }
+  &__search-icon {
+    border-radius: 100%;
+    padding-top: 1rem;
+    padding-right: 1rem;
+    @include tablet {
+      // padding-bottom: 1rem;
+    }
+  }
+  &__search-p {
+    color: $slate;
+    @include tablet {
+      display: block;
+      padding-right: 3rem;
+      padding-top: 0.7rem;
+    }
+  }
+  &__add-div {
+    text-align: center;
+    border-radius: 20px;
+    padding-bottom: 1rem;
+    background-color: $indigo;
+    width: 80%;
+    top: 17rem;
+    height: 2.25rem;
+    @include tablet {
+      padding: 0 1rem;
+      border-radius: 20px;
+      height: 2.38rem;
+      display: flex;
+      font-weight: bold;
+      width: 12rem;
+    }
+  }
+  &__add-p {
+    color: $white;
+    @include tablet {
+      padding-top: 0.5rem;
+    }
+  }
+}
