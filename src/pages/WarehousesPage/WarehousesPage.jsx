@@ -1,9 +1,11 @@
+import Footer from "../../components/Footer/Footer";
+
 const WarehousesPage = () => {
   return (
     <div>
-      <h1>Welcome to warehouse Page</h1>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default WarehousesPage
+export default WarehousesPage;

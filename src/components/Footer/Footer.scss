@@ -1,0 +1,14 @@
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/typography" as *;
+
+.footer {
+  text-align: center;
+  &__text {
+    font-family: "Titillium", "Arial", sans-serif;
+    color: $slate;
+    background-color: $light-grey;
+    font-size: 1rem;
+  }
+}
