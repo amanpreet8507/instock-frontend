@@ -3,20 +3,37 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/typography" as *;
 
-
-.column{
-    display: flex;
-    flex-direction: column;
+h2 {
+  color: $black;
+  padding-left: 1rem;
 }
 
-.row{
+.addWarehouse {
+  &__header {
     display: flex;
     flex-direction: row;
-}
-.addWarehouse{
+    padding-left: 1rem;
+    border-bottom: 1px solid $cloud;
 
-    &__header{
-        
+    &--title {
+      font-size: 2rem;
+      color: $black;
+      font-weight: bold;
+      padding-left: 0.5rem;
     }
-    
+  }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.addWarehouse {
+  &__header {
+  }
 }

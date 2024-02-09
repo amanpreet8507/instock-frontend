@@ -1,3 +1,28 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/global" as *;
 @use "../../styles/partials/mixins" as *;
+
+.textfield {
+  display: flex;
+  flex-direction: column;
+  &__label {
+    padding-left: 1rem;
+    color: $black;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  &__error {
+    padding-left: 1rem;
+    color: $red;
+    font-size: 0.8rem;
+  }
+
+  input {
+    border-radius: 30px;
+    font-size: 1rem;
+    color: $cloud;
+    border: 1px solid $light-grey;
+    padding: 1rem;
+  }
+}
