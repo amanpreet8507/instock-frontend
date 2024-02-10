@@ -6,6 +6,7 @@ import { api } from "../../axios/axios";
 import { AddButton } from "../AddButton/AddButton";
 import { CancelButton } from "../CancelButton/CancelButton";
 import {Card} from "../Card/Card";
+import {Link} from "react-router-dom"
 
 const phoneNumberRegex = /^\+\d{1,3}\s\(\d{3}\)\s\d{3}-\d{4}$/;
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -77,7 +78,8 @@ const AddWarehouse = ({ onCancel }) => {
     <div className="addWarehouse">
       <Card>
         <div className="addWarehouse__header">
-          <img src={backArrow} onClick={onCancel} alt="go_back" />
+          <Link to ="/warehouses">
+          <img src={backArrow} alt="go_back" /></Link>
           <h2 className="addWarehouse__header--title">Add New Warehouse</h2>
         </div>
 
