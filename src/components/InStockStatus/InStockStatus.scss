@@ -3,11 +3,13 @@
 @use '../../styles/partials/mixins' as *;
 
 .status{
-    &__p{
+    &__h3{
         color: $green;
         background-color: $light-green;
-        padding: 0 .5rem;
-        border-radius: 20px;
+        padding: 0 $padding-tag-lr;
+        border-radius: $border-radius;
         font-weight: 600;
+        margin: 0;
+        height: $mobile-tag-height;
     }
 }

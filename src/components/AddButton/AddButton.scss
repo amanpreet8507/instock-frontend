@@ -1,0 +1,42 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+
+.button {
+  &__add-div {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    border-radius: 30px;
+    padding-bottom: 0.5rem;
+    background-color: $indigo;
+    width: 100%;
+    border-style: none;
+    height: $mobile-button-height;
+
+    @include tablet {
+      padding: 0 1rem;
+      border-radius: 30px;
+      height: 2.38rem;
+      display: flex;
+      height: $tablet-button-height;
+      margin: 1rem 1rem 1rem 2rem;
+    }
+  }
+  &__add-p {
+    margin: 0;
+    color: $white;
+    font-weight: bold;
+    font-size: $mobile-p-font-small;
+    line-height: $mobile-p-height-small;
+    @include tablet {
+      font-size: $desktop-p-font-medium;
+      line-height: $desktop-p-height-medium;
+    }
+    @include desktop {
+      font-size: $desktop-p-font-large;
+      line-height: $desktop-p-height-large;
+    }
+  }
+}
