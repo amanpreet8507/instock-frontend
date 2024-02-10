@@ -2,7 +2,9 @@ import './OutOfStockStatus.scss'
 
 const OutOfStockStatus = () => {
   return (
-      <p className='status__alert'>OUT OF STOCK</p>
+    <div className='status__div'>
+      <h3 className='status__alert'>OUT OF STOCK</h3>
+      </div>
   )
 }
 

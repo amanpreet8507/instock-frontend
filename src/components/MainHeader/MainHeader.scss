@@ -8,15 +8,8 @@
         justify-content: space-between;
         align-items: center;
         text-align: center;
+        padding: $tablet-padding;
     }
-    &__div{
-        border-bottom: 1px solid $cloud;
-        padding: $mobile-padding;
-        @include tablet{
-            padding: $tablet-padding;
-        }
-    }
-
 }
 
 .header{
@@ -54,6 +47,7 @@
     &__edit-p{
         display: none;
         color: $white;
+        margin: 0;
         @include tablet{
             display: block;
         }

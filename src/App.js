@@ -17,7 +17,6 @@ function App() {
           <Route path="/warehouses/:id" element={<WarehouseDetailsPage />} />
           <Route path="/inventory/:id" element={<InventoryDetailsPage />} />
           <Route path="/inventory/item" element={<ItemDetailsPage />} />
-
         </Routes>
       </BrowserRouter>
     </div>

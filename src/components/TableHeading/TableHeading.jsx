@@ -4,7 +4,7 @@ import './TableHeading.scss'
 const TableHeading = (props) => {
   return (
     <th className='table__heading'>
-        {props.heading}
+        {props.text}
         <img src={sortIcon}></img>
     </th>
   )

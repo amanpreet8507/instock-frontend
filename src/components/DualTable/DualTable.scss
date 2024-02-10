@@ -17,7 +17,7 @@
     padding: 1rem $tablet-padding 1rem;
   }
   &__heading-row {
-    background-color: $cloud;
+    background-color: $light-grey;
     color: slate;
   }
   &__data {
@@ -25,8 +25,9 @@
     align-items: center;
     text-align: center;
   }
-  &__warehouse__col--1 {
+  &__warehouse__col-1 {
     display: flex;
+    gap: 4px;
     justify-content: flex-start;
     color: $indigo;
     font-size: $desktop-H3-font;
@@ -36,6 +37,6 @@
   }
 
 &__data__delete__icon{
- padding-right: 1rem;
+    padding-right: 1rem;
   }
 }
