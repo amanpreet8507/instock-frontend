@@ -9,10 +9,9 @@ import axios from "axios";
 import {Card} from "../../components/Card/Card"
 
 const InventoryPage = () => {
-  const [listData, setListData] = useState([]);
-  {
-    /****************** Fuction to fetch Inventory List Array ********************/
-  }
+  const [listData, setListData] = useState([])
+  
+  {/****************** Fuction to fetch Inventory List Array ********************/}
   const fetchData = async () => {
     const response = await axios.get("http://localhost:8080/inventories");
     const fetchedList = response.data;

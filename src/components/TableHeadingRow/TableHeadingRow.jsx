@@ -1,7 +1,6 @@
 import "../TableHeading/TableHeading";
 import TableHeading from "../TableHeading/TableHeading";
 
-
 const TableHeadingRow = () => {
   return (
     <table className="table__warehouse">
