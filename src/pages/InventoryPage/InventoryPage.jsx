@@ -13,7 +13,6 @@ const InventoryPage = () => {
   const fetchData = async() => {
       const response = await axios.get('http://localhost:8080/inventories')
       const fetchedList= response.data
-      console.log(fetchedList)
       setListData(fetchedList)
   }
   useEffect(()=> {
