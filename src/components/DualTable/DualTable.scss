@@ -14,29 +14,24 @@
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    padding: 1rem $tablet-padding 1rem;
+    padding: 1rem $tablet-padding;
   }
   &__heading-row {
     background-color: $light-grey;
-    color: slate;
+    color: $slate;
   }
   &__data {
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center;
+    width: 25%;
   }
-  &__warehouse__col-1 {
-    display: flex;
-    gap: 4px;
-    justify-content: flex-start;
-    color: $indigo;
-    font-size: $desktop-H3-font;
-    line-height: $desktop-H3-height;
-    font-weight: 600;
-    cursor: pointer;
+  &__data-1{
+    justify-content: start;
   }
-
-&__data__delete__icon{
-    padding-right: 1rem;
+  &__data-last{
+    justify-content: end;
+    gap: 2rem;
   }
 }
