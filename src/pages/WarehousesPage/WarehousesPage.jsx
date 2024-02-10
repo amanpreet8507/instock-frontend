@@ -1,10 +1,9 @@
 import "./WarehousesPage.scss";
-import { useState } from "react";
 import Header from "../../components/Header/Header";
-import WarehouseHeader from "../../components/WarehouseTable/WarehouseHeader";
-import WarehouseTable from "../../components/WarehouseTable/WarehouseTable";
 import Footer from "../../components/Footer/Footer";
-import AddWarehouse from "../../components/AddWarehouse/AddWarehouse";
+import WarehouseDetailsCard from "../../components/DualCard/WarehouseDetailsCard";
+import DualHeader from "../../components/DualHeader/DualHeader";
+import WarehouseTable from "../../components/DualTable/WarehouseTable";
 
 const WarehousesPage = () => {
   const [addWarehouse, setAddWarehouse] = useState(false);
@@ -12,15 +11,13 @@ const WarehousesPage = () => {
     <>
       <Header />
       <main className="main">
-        {addWarehouse ? (
-          <AddWarehouse  onCancel={()=>setAddWarehouse(false)}/>
-        ) : (
-          <>
-            <WarehouseHeader addWarehouse={() => setAddWarehouse(true)} />
-            <WarehouseTable />
-          </>
-        )}
-        
+        <DualHeader
+          pageAbout="Warehouses"
+          formFieldText="Search..."
+          buttonText="+ Add New Warehouse"
+        />
+        <WarehouseDetailsCard />
+        <WarehouseTable />
       </main>
       <Footer />
     </>
