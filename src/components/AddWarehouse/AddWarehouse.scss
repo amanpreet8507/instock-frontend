@@ -5,15 +5,28 @@
 
 h2 {
   color: $black;
-  padding-left: 1rem;
+  padding-left: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid $cloud;
+  margin-top: 0;
 }
 
 .addWarehouse {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
   &__header {
     display: flex;
     flex-direction: row;
-    padding-left: 1rem;
-    border-bottom: 1px solid $cloud;
+    padding-left: 2rem;
+    @include tablet {
+      padding: 2rem;
+    }
 
     &--title {
       font-size: 2rem;
@@ -21,19 +34,5 @@ h2 {
       font-weight: bold;
       padding-left: 0.5rem;
     }
-  }
-}
-
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-.addWarehouse {
-  &__header {
   }
 }

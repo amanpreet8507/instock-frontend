@@ -1,4 +1,3 @@
-import React from "react";
 import "./TextField.scss";
 
 const TextField = ({label, value="", setValue, error = ""}) => {

@@ -55,7 +55,7 @@ const AddWarehouse = ({ onCancel }) => {
         setClickSubmit(false);
       }
     } catch (error) {
-      console.log("🚀 ~ handleSubmit ~ error:", error);
+      console.log("handleSubmit error:", error);
     }
   };
 
@@ -77,9 +77,10 @@ const AddWarehouse = ({ onCancel }) => {
         <p className="addWarehouse__header--title">Add New Warehouse</p>
       </div>
 
-      <div className="column addWarehouse__container">
+      <div className="addWarehouse__container">
+        <div className="addWarehouse__column">
         <h2>Warehouse Details</h2>
-        <div className="column addWarehouse__textFields">
+        <div className="addWarehouse__textFields">
           <TextField
             label="Warehouse Name"
             value={warehouse_name}
@@ -110,9 +111,10 @@ const AddWarehouse = ({ onCancel }) => {
           />
         </div>
       </div>
-      <div className="column addWarehouse__container">
+    
+      <div className="addWarehouse__column">
         <h2>Contact Details</h2>
-        <div className="column addWarehouse__textFields">
+        <div className="addWarehouse__textFields">
           <TextField
             label="Contact Name"
             value={contact_name}
@@ -130,8 +132,7 @@ const AddWarehouse = ({ onCancel }) => {
             setValue={setPhoneNumber}
             error={
               clickSubmit &&
-              (phone_number === "" ||
-              !phoneNumberRegex.test(phone_number))
+              (phone_number === "" || !phoneNumberRegex.test(phone_number))
                 ? "Enter valid phone number"
                 : ""
             }
@@ -147,6 +148,7 @@ const AddWarehouse = ({ onCancel }) => {
             }
           />
         </div>
+      </div>
       </div>
       <div className="addWarehouse__buttons">
         <button onClick={onCancel} className="addWarehouse__cancelBtn">
