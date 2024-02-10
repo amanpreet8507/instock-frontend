@@ -4,15 +4,16 @@ import InventoryItemCard from "../../components/DualCard/InventoryItemCard";
 import "./InventoryDetailsPage.scss";
 import InventoryTable from "../../components/DualTable/InventoryTable";
 import Footer from "../../components/Footer/Footer";
+import {Card} from "../../components/Card/Card";
 
 const InventoryDetailsPage = () => {
   return (
     <>
-      <main className="main">
+      <Card>
         <MainHeader headerTitle="Washington" />
         <InventoryItemCard />
         <InventoryTable />
-      </main>
+      </Card>
     </>
   );
 };

@@ -6,6 +6,7 @@ import DualHeader from "../../components/DualHeader/DualHeader";
 import InventoryTableList from "../../components/InventoryTableList/InventoryTableList";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {Card} from "../../components/Card/Card"
 
 const InventoryPage = () => {
   const [listData, setListData] = useState([]);
@@ -23,7 +24,7 @@ const InventoryPage = () => {
   }, []);
   return (
     <>
-      <main className="main">
+      <Card>
         <DualHeader
           pageAbout="Inventories"
           formFieldText="Search..."
@@ -31,7 +32,7 @@ const InventoryPage = () => {
         />
         <InventoryCardList inventoryList={listData} />
         <InventoryTableList inventoryList={listData} />
-      </main>
+      </Card>
     </>
   );
 };

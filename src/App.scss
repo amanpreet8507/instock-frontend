@@ -58,6 +58,17 @@ h4 {
     line-height: $desktop-H4-height;
   }
 }
-li{
+li {
   list-style: none;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &__container {
+    background-color: $light-grey;
+    flex-grow: 1;
+  }
 }

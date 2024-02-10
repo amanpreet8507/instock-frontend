@@ -5,6 +5,7 @@ import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { api } from "../../axios/axios";
 import { AddButton } from "../AddButton/AddButton";
 import { CancelButton } from "../CancelButton/CancelButton";
+import {Card} from "../Card/Card";
 
 const phoneNumberRegex = /^\+\d{1,3}\s\(\d{3}\)\s\d{3}-\d{4}$/;
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -74,7 +75,7 @@ const AddWarehouse = ({ onCancel }) => {
 
   return (
     <div className="addWarehouse">
-      <div className="addWarehouse__card">
+      <Card>
         <div className="addWarehouse__header">
           <img src={backArrow} onClick={onCancel} alt="go_back" />
           <h2 className="addWarehouse__header--title">Add New Warehouse</h2>
@@ -165,7 +166,7 @@ const AddWarehouse = ({ onCancel }) => {
           <CancelButton text="Cancel" link="/warehouses" />
           <AddButton action={handleSubmit}>+ Add Warehouse</AddButton>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

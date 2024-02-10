@@ -3,12 +3,13 @@ import WarehouseDetailsCard from "../../components/DualCard/WarehouseDetailsCard
 import DualHeader from "../../components/DualHeader/DualHeader";
 import WarehouseTable from "../../components/DualTable/WarehouseTable";
 import { useState } from "react";
+import { Card } from "../../components/Card/Card";
 
 const WarehousesPage = () => {
   const [addWarehouse, setAddWarehouse] = useState(false);
   return (
     <>
-      <main className="main">
+      <Card>
         <DualHeader
           pageAbout="Warehouses"
           formFieldText="Search..."
@@ -17,7 +18,7 @@ const WarehousesPage = () => {
         />
         <WarehouseDetailsCard />
         <WarehouseTable />
-      </main>
+      </Card>
     </>
   );
 };

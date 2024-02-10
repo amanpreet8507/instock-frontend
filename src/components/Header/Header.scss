@@ -8,11 +8,12 @@
   color: $white;
 }
 
+
 .header {
   font-family: "Titillium", "Arial", sans-serif, serif;
   background-color: $graphite;
   text-align: center;
-  padding: 2rem;
+  padding: 2rem 2rem 7rem;
 
   @include tablet {
     display: flex;
