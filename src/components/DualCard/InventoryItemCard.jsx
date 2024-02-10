@@ -5,7 +5,8 @@ import ItemButton from "../ItemButton/ItemButton";
 import InStockStatus from "../InStockStatus/InStockStatus";
 import OutOfStockStatus from "../OutOfStockStatus/OutOfStockStatus";
 
-const InventoryItemCard = () => {
+const InventoryItemCard = ({category, itemName, status, quantity}) => {
+
   return (
     <>
     {/* Mobile Breakpoints */}
@@ -14,22 +15,22 @@ const InventoryItemCard = () => {
           <div>
             <div className="card__inner-div">
               <h4 className="card__title">INVENTORY NAME</h4>
-              <ItemButton text="Televison" className='card__inner-details'/>
+              <ItemButton text={itemName} className='card__inner-details'/>
             </div>
             <div className="card__inner-div">
               <h4 className="card__title card__h4">CATEGORY</h4>
-              <p className='card__inner-details'>Category Name</p>
+              <p className='card__inner-details'>{category}</p>
             </div>
           </div>
           <div>
             <div className="card__inner-div card__status-qty">
               <h4 className="card__title">STATUS</h4>
-              <InStockStatus className='card__inner-details'/>
+              <div className='card__inner-details'>{status}</div>
               
             </div>
             <div className="card__inner-div">
               <h4 className="card__title card__h4">QTY</h4>
-              <p className='card__inner-details'>500</p>
+              <p className='card__inner-details'>{quantity}</p>
             </div>
           </div>
         </div>
