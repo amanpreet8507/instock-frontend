@@ -9,7 +9,7 @@ const DualHeader = (props) => {
         <h1 className="dual-header__h1">{props.pageAbout}</h1>
         <div className="dual-header__search-button">
           <FormField text={props.formFieldText} />
-          <AddButton text={props.buttonText} />
+          <AddButton text={props.buttonText} link={props.link}/>
         </div>
       </div>
     </>

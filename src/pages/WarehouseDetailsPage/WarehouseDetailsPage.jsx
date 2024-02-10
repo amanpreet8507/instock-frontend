@@ -9,14 +9,12 @@ import Footer from '../../components/Footer/Footer';
 const WarehouseDetailsPage = () => {
   return (
     <>
-      <Header />
       <main className="main">
         <MainHeader headerTitle="Washington" />
         <AddressCard />
         <InventoryItemCard />
         <InventoryTable />
       </main>
-      <Footer/>
     </>
   );
 };
