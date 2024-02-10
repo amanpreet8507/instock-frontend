@@ -1,0 +1,20 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+
+.dual-header{
+  padding: $mobile-padding;
+  @include tablet{
+    padding: $tablet-padding;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__search-button{
+    @include tablet{
+      display: flex;
+    }
+    @include desktop{
+      gap: 8rem;
+    }
+  }
+}

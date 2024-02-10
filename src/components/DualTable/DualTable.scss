@@ -1,0 +1,37 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+
+.table {
+  &__warehouse {
+    display: none;
+    @include tablet {
+      display: block;
+    }
+  }
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 1rem $tablet-padding;
+  }
+  &__heading-row {
+    background-color: $light-grey;
+    color: $slate;
+  }
+  &__data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 25%;
+  }
+  &__data-1{
+    justify-content: start;
+  }
+  &__data-last{
+    justify-content: end;
+    gap: 2rem;
+  }
+}

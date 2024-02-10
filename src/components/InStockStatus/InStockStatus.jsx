@@ -3,7 +3,7 @@ import './InStockStatus.scss'
 const InStockStatus = () => {
   return (
     <div className='status__div'>
-      <p className='status__p'>IN STOCK</p>
+      <h3 className='status__h3'>IN STOCK</h3>
     </div>
   )
 }
