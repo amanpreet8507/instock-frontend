@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import InventoryCardList from "../../components/InventoryCardList/InventoryCardList";
 import DualHeader from "../../components/DualHeader/DualHeader";
-import InventoryTable from "../../components/DualTable/InventoryTable";
+import InventoryTableList from "../../components/InventoryTableList/InventoryTableList";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -24,12 +24,12 @@ const InventoryPage = () => {
       <Header />
       <main className="main">
         <DualHeader
-          pageAbout="Warehouses"
+          pageAbout="Inventories"
           formFieldText="Search..."
           buttonText="+ Add Inventory Item"
         />
         <InventoryCardList inventoryList={listData}/>
-        <InventoryTable />
+        <InventoryTableList inventoryList={listData} />
       </main>
       <Footer />
     </>
