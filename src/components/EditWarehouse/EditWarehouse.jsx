@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import "./AddWarehouse.scss";
+import React, { useState, useEffect } from "react";
+import "./EditWarehouse.scss";
 import TextField from "../TextField/TextField";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { api } from "../../axios/axios";
 import { AddButton } from "../AddButton/AddButton";
 import { CancelButton } from "../CancelButton/CancelButton";
-import {Card} from "../Card/Card";
-import {Link, useNavigate} from "react-router-dom"
+import { Card } from "../Card/Card";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 const phoneNumberRegex = /^\+\d{1,3}\s\(\d{3}\)\s\d{3}-\d{4}$/;
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-const AddWarehouse = ({ onCancel }) => {
+const EditWarehouse = () => {
+  const { warehouseID } = useParams();
   const navigate = useNavigate();
   const [warehouse_name, setWarehouseName] = useState("");
   const [address, setAddress] = useState("");
@@ -44,7 +45,7 @@ const AddWarehouse = ({ onCancel }) => {
     }
 
     try {
-      const res = await api.post("/warehouses", {
+      const res = await api.put(`/warehouses/${warehouseID}`, {
         warehouse_name,
         address,
         city,
@@ -55,7 +56,7 @@ const AddWarehouse = ({ onCancel }) => {
         contact_email: email,
       });
 
-      if (res.status === 201) {
+      if (res.status === 200) {
         clearForm();
         setClickSubmit(false);
         navigate("/warehouses");
@@ -76,13 +77,37 @@ const AddWarehouse = ({ onCancel }) => {
     setEmail("");
   };
 
+  const getWarehouseWithId = async () => {
+    try {
+      const res = await api.get(`/warehouses/${warehouseID}`);
+      if (res.status === 200) {
+        const warehouseData = res.data[0];
+        setWarehouseName(warehouseData.warehouse_name);
+        setAddress(warehouseData.address);
+        setCity(warehouseData.city);
+        setCountry(warehouseData.country);
+        setContactName(warehouseData.contact_name);
+        setPosition(warehouseData.contact_position);
+        setPhoneNumber(warehouseData.contact_phone);
+        setEmail(warehouseData.contact_email);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getWarehouseWithId();
+  }, []);
+
   return (
     <div className="addWarehouse">
       <Card>
         <div className="addWarehouse__header">
-          <Link to ="/warehouses">
-          <img src={backArrow} alt="go_back" /></Link>
-          <h1 className="addWarehouse__header--title">Add New Warehouse</h1>
+          <Link to="/warehouses">
+            <img src={backArrow} alt="go_back" />
+          </Link>
+          <h1 className="addWarehouse__header--title">Edit Warehouse</h1>
         </div>
 
         <div className="addWarehouse__container">
@@ -140,7 +165,8 @@ const AddWarehouse = ({ onCancel }) => {
               <TextField
                 label="Position"
                 value={position}
-                setValue={setPosition} error={
+                setValue={setPosition}
+                error={
                   clickSubmit && contact_name === ""
                     ? "Position is required"
                     : ""
@@ -172,11 +198,11 @@ const AddWarehouse = ({ onCancel }) => {
         </div>
         <div className="addWarehouse__buttons">
           <CancelButton text="Cancel" link="/warehouses" />
-          <AddButton action={handleSubmit}>+ Add Warehouse</AddButton>
+          <AddButton action={handleSubmit}>Save</AddButton>
         </div>
       </Card>
     </div>
   );
 };
 
-export default AddWarehouse;
+export default EditWarehouse;

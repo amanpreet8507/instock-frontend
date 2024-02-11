@@ -17,12 +17,14 @@
   &__error {
     color: $red;
     font-size: 0.8rem;
+    margin-top: 0.3rem;
+    margin-left: 0.1rem;
   }
 
   input {
     border-radius: 20px;
     font-size: 1rem;
-    color: $cloud;
+    color: $black;
     border: 1px solid $cloud;
     padding: 0.5rem 1rem;
     font-family: "Titillium", sans-serif;

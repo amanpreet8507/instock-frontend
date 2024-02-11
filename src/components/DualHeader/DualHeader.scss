@@ -2,19 +2,19 @@
 @use "../../styles/partials/global" as *;
 @use "../../styles/partials/mixins" as *;
 
-.dual-header{
+.dual-header {
   padding: $mobile-padding;
-  @include tablet{
+  @include tablet {
     padding: $tablet-padding;
     display: flex;
     justify-content: space-between;
   }
-  &__search-button{
-    @include tablet{
+  &__search-button {
+    @include tablet {
       display: flex;
+      gap: 2rem;
     }
-    @include desktop{
-      gap: 8rem;
+    @include desktop {
     }
   }
 }
