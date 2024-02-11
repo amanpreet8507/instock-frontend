@@ -19,10 +19,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 2rem 2rem 7rem;
   }
 
   @include desktop {
-    padding: 2rem 10rem;
+    padding: 2rem 2rem 7rem;
   }
 
   &__logo {
