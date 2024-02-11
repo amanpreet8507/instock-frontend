@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./EditWarehouse.scss";
-import TextField from "../TextField/TextField";
+import TextField from "../FormComponents/TextField/TextField";
 import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { api } from "../../axios/axios";
-import { AddButton } from "../AddButton/AddButton";
-import { CancelButton } from "../CancelButton/CancelButton";
+import AddButton from "../Buttons/AddButton";
+import  CancelButton  from "../Buttons/CancelButton";
 import { Card } from "../Card/Card";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
