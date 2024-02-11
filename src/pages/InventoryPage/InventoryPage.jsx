@@ -5,7 +5,7 @@ import InventoryCardList from "../../components/InventoryCardList/InventoryCardL
 import DualHeader from "../../components/DualHeader/DualHeader";
 import InventoryTableList from "../../components/InventoryTableList/InventoryTableList";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import {api} from "../../axios/axios";
 import {Card} from "../../components/Card/Card"
 
 const InventoryPage = () => {
@@ -13,7 +13,7 @@ const InventoryPage = () => {
   
   {/****************** Fuction to fetch Inventory List Array ********************/}
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:8080/inventories");
+    const response = await api.get("/api/inventories");
     const fetchedList = response.data;
     console.log(fetchedList);
     setListData(fetchedList);
