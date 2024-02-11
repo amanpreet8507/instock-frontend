@@ -7,9 +7,11 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 import { api } from "../../axios/axios";
+import {DeleteWarehouseModal} from "../DeleteWarehouseModal/DeleteWarehouseModal";
 
 const WarehouseTable = () => {
   const [warehouseData, setWarehouseData] = useState([]);
+  const [deleteModal, setDeleteModal] = useState(false);
 
   const getAllWarehouses = async () => {
     try {
@@ -50,7 +52,7 @@ const WarehouseTable = () => {
               {warehouse.contact_email}
             </td>
             <td className="table__data table__warehouse__actions">
-              <img src={deleteIcon} className="table__data__delete__icon" />
+              <img src={deleteIcon} className="table__data__delete__icon" onClick={() => setDeleteModal(true)} />
               <Link to={`/warehouses/edit/${warehouse.id}`}>
                 <img src={editIcon} />
               </Link>
@@ -58,6 +60,7 @@ const WarehouseTable = () => {
           </tr>
         ))}
       </table>
+     {deleteModal && <DeleteWarehouseModal />}
     </>
   );
 };
