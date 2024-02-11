@@ -12,6 +12,9 @@ import {DeleteWarehouseModal} from "../DeleteWarehouseModal/DeleteWarehouseModal
 const WarehouseTable = () => {
   const [warehouseData, setWarehouseData] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
+const handleDeleteModalClose = () => {
+  setDeleteModal(false);
+}
 
   const getAllWarehouses = async () => {
     try {
@@ -60,7 +63,7 @@ const WarehouseTable = () => {
           </tr>
         ))}
       </table>
-     {deleteModal && <DeleteWarehouseModal />}
+     {deleteModal && <DeleteWarehouseModal onClose={handleDeleteModalClose}/>}
     </>
   );
 };
