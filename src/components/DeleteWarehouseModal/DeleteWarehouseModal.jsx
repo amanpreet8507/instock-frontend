@@ -23,7 +23,7 @@ export const DeleteWarehouseModal = ({ onClose, warehouse }) => {
         <div className="deleteModal__close" onClick={onClose}>
           <img src={closeImage} alt="delete" />
         </div>
-        <h2>Delete {warehouse.warehouse_name} warehouse ?</h2>
+        <h1>Delete {warehouse.warehouse_name} warehouse ?</h1>
         <p>
           Please confirm that you'd like to delete the {warehouse.warehouse_name} from the list of warehouses. You won't be able to undo this action.
         </p>

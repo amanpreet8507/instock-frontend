@@ -23,7 +23,7 @@ export const DeleteInventoryModal = ({ onClose, inventory }) => {
         <div className="deleteModal__close" onClick={onClose}>
           <img src={closeImage} alt="delete" />
         </div>
-        <h2>Delete {inventory.inventory_name} inventory item?</h2>
+        <h1>Delete {inventory.inventory_name} inventory item?</h1>
         <p>
           Please confirm that you'd like to delete the {inventory.inventory_name} from the inventory list. You won't be able to undo this action.
         </p>
