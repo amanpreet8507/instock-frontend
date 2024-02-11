@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const MainHeader = (props) => {
   return (
     <>
-        <div className='main__div main__header-div'>
+        <div className='main__header-div'>
         <div className='header__icon-and-heading'>
             <Link to='/' className='header__link'>
                 <img className='header__arrow-icon' src={arrowBackIcon}></img>

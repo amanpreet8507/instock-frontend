@@ -1,16 +1,13 @@
-import './ItemDetailsPage.scss';
+import "./ItemDetailsPage.scss";
 import Header from "../../components/Header/Header";
-import InventoryItemDetails from '../../components/InventoryItemDetails/InventoryItemDetails';
+import InventoryItemDetails from "../../components/InventoryItemDetails/InventoryItemDetails";
 
 const ItemDetailsPage = () => {
   return (
-    <>
-    <Header/>
     <div>
-     <InventoryItemDetails />
+      <InventoryItemDetails />
     </div>
-    </>
-  )
-}
+  );
+};
 
-export default ItemDetailsPage
+export default ItemDetailsPage;

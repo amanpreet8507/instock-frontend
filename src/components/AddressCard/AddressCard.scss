@@ -1,54 +1,63 @@
-@use '../../styles/partials/variables' as *;
-@use '../../styles/partials/global' as *;
-@use '../../styles/partials/mixins' as *;
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
 
-.main{
-    &__header-div{
-        display: flex;
-        justify-content: space-between;
+.main {
+  &__div {
+    border-top: 0.5px solid $cloud;
+    padding: $mobile-padding;
+    @include tablet {
+      padding: $tablet-padding;
+      display: flex;
     }
-    &__div{
-        border-bottom: 1px solid $cloud;
-        padding: $mobile-padding;
-        @include tablet{
-            padding: $tablet-padding;
-            display: flex;
-        }
-    }
+  }
 }
 
-.card{
-    &__title{
-        font-weight: bold;
-        color: $slate;
+.card {
+  &__title {
+    color: $slate;
+    padding-bottom: $padding-bottom-label;
+  }
+  &__inner-details {
+    font-size: $mobile-p-font-medium;
+    line-height: $mobile-p-height-medium;
+    margin-top: 0;
+    @include tablet {
+      font-size: $desktop-p-font-medium;
+      line-height: $desktop-p-height-medium;
     }
-    &__title-address{
-        @include tablet{
-            width: 200px;
-        }
+    @include desktop {
+      font-size: $desktop-p-font-large;
+      line-height: $desktop-p-height-large;
     }
-    &__address-div{
-        @include tablet{
-            margin-right: 4rem;
-        }
-        @include desktop{
-            margin-right: 15rem;
-        }
+  }
+  &__title-address {
+    @include tablet {
+      width: 200px;
     }
-    &__information-div{
-        display: flex;
-        justify-content: space-between;
-        margin-right: 3rem;
-        gap:3rem;
-        @include tablet{
-            width: 100%;
-            margin-right: 2rem;
-            border-left: 1px solid $cloud;
-            padding-left: 3rem;
-        }
-        @include desktop{
-            margin-right: 5rem;
-        }
+  }
+  &__address-div {
+    padding-bottom: $mobile-padding;
+    @include tablet {
+      margin-right: 4rem;
     }
-
+    @include desktop {
+      margin-right: 15rem;
+    }
+  }
+  &__information-div {
+    margin-right: 2rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    @include tablet {
+      width: 100%;
+      margin-right: 2rem;
+      border-left: 1px solid $cloud;
+      padding-left: 3rem;
+    }
+    @include desktop {
+      margin-right: 5rem;
+    }
+  }
 }

@@ -1,0 +1,25 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+
+.button {
+  &__add-div {
+    text-decoration: none;
+    color: $white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    border: 1px solid $cloud;
+    background-color: $indigo;
+    padding: 0.5rem 0;
+    border: 1px solid $indigo;
+    width: 100%;
+
+    @include tablet {
+      width: auto;
+      padding: 0.5rem 1rem;
+    }
+  }
+}
