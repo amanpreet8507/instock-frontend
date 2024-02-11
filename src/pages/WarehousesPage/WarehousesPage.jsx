@@ -16,7 +16,7 @@ const WarehousesPage = () => {
           buttonText="+ Add New Warehouse"
           link="/warehouses/add"
         />
-        <WarehouseDetailsCard />
+        {/* <WarehouseDetailsCard /> */}
         <WarehouseTable />
       </Card>
     </>

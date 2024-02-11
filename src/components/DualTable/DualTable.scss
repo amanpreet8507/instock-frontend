@@ -35,3 +35,38 @@
     gap: 2rem;
   }
 }
+
+// Copied the following from DualCard.scss 
+.card {
+  padding: $mobile-padding;
+  border-top: 1px solid $cloud;
+  @include tablet {
+    display: none;
+    padding: $tablet-padding;
+  }
+
+  &__info-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  &__title {
+    color: $slate;
+    padding-bottom: $padding-bottom-label;
+  }
+  &__h4 {
+    padding-top: $mobile-padding;
+  }
+  &__icons {
+    display: flex;
+    justify-content: space-between;
+    padding: $mobile-padding 0;
+  }
+  &__inner-details {
+    font-size: $mobile-p-font-medium;
+    line-height: $mobile-p-height-medium;
+  }
+  &__status-qty {
+    margin-right: 5rem;
+  }
+}

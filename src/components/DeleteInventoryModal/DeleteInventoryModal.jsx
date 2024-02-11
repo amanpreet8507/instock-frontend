@@ -2,11 +2,11 @@ import "./DeleteModal.scss";
 import closeImage from "../../assets/icons/close-24px.svg";
 import {api} from "../../axios/axios";
 
-export const DeleteWarehouseModal = ({ onClose, warehouse }) => {
+export const DeleteInventoryModal = ({ onClose, inventory }) => {
 
   const handleDelete= async () => {
     try {
-      const res = await api.delete(`/warehouses/${warehouse.id}`)
+      const res = await api.delete(`/inventories/${inventory.id}`)
       if (res.status === 204) {
         onClose()
         window.location.reload()
@@ -23,9 +23,9 @@ export const DeleteWarehouseModal = ({ onClose, warehouse }) => {
         <div className="deleteModal__close" onClick={onClose}>
           <img src={closeImage} alt="delete" />
         </div>
-        <h2>Delete {warehouse.warehouse_name} warehouse ?</h2>
+        <h2>Delete {inventory.inventory_name} inventory item?</h2>
         <p>
-          Please confirm that you'd like to delete the {warehouse.warehouse_name} from the list of warehouses. You won't be able to undo this action.
+          Please confirm that you'd like to delete the {inventory.inventory_name} from the inventory list. You won't be able to undo this action.
         </p>
         </div>
         <div className="deleteModal__buttons">
