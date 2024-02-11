@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import InventoryCardList from '../../components/InventoryCardList/InventoryCardList';
 import InventoryTableList from '../../components/InventoryTableList/InventoryTableList';
+import EditIcon from '../../components/MainHeader/EditIcon';
 
 const WarehouseDetailsPage = () => {
   const[warehouseInventoryArr, setWarehouseInventoryArr] = useState([])
@@ -40,15 +41,11 @@ const WarehouseDetailsPage = () => {
   return (
     <>
       <main className="main">
+      <div className='main__header-div'>
         <MainHeader headerTitle="Washington" />
+        <EditIcon/>
+        </div>
         {warehouseAddress && <AddressCard location={warehouseAddress[0]}/>}
-        {/* <AddressCard address ={warehouseAddress[0].address}
-          city={warehouseAddress[0].city}
-          country={warehouseAddress[0].country}
-          contactName={warehouseAddress[0].contact_name}
-          contactPosition={warehouseAddress[0].contact_position}
-          contactPhone={warehouseAddress[0].contact_phone}
-          contactEmail={warehouseAddress[0].contact_email}/> */}
         <InventoryCardList inventoryList={warehouseInventoryArr}/>
         <InventoryTableList inventoryList={warehouseInventoryArr}/>
       </main>

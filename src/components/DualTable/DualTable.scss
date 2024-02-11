@@ -30,6 +30,10 @@
   &__data-1{
     justify-content: start;
   }
+  &__data-middle{
+    justify-content: flex-start;
+    margin-left: 6.5rem;
+  }
   &__data-last{
     justify-content: end;
     gap: 2rem;

@@ -2,6 +2,8 @@ import "../TableHeading/TableHeading";
 import ItemButton from "../ItemButton/ItemButton";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
+import { Link } from "react-router-dom";
+import InventoryDetailsPage from "../../pages/InventoryDetailsPage/InventoryDetailsPage";
 import "./DualTable.scss";
 
 const InventoryTable = ({ category, itemName, status, quantity }) => {
@@ -10,14 +12,14 @@ const InventoryTable = ({ category, itemName, status, quantity }) => {
 
         <tr className="table__row">
           <td className="table__data table__data-1">
-            <ItemButton text={itemName} />
+            <Link to ="/inventories/:id"><ItemButton text={itemName} /></Link>
           </td>
-          <td className="table__data">{category}</td>
-          <td className="table__data table__data-last">{status}</td>
-          <td className="table__data table__data-last">{quantity}</td>
+          <td className="table__data table__data-middle">{category}</td>
+          <td className="table__data table__data-middle">{status}</td>
+          <td className="table__data table__data-middle">{quantity}</td>
           <td className="table__data table__data-last">
-            <img src={deleteIcon} className="table__data__delete__icon" />
-            <img src={editIcon} />
+            <img src={deleteIcon}/>
+            <Link to="/inventories/:id/edit"><img src={editIcon}/></Link>
           </td>
         </tr>
 
