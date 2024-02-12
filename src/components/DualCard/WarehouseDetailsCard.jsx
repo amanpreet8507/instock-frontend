@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect} from "react";
 import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
 import axios from "axios";
+import {api} from "../../axios/axios"
 
 const WarehouseDetailsCard = ({ warehouseArr }) => {
   const [warehouseData, setWarehouseData] = useState([]);
@@ -22,7 +23,7 @@ const WarehouseDetailsCard = ({ warehouseArr }) => {
   };
   const getAllWarehouses = async () => {
     try {
-      const response = await axios.get("/warehouses");
+      const response = await api.get("/warehouses");
       setWarehouseData(response.data);
     } catch (error) {
       console.error(error);
