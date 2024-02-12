@@ -21,20 +21,20 @@ const WarehousesPage = () => {
       console.error(error);
     }
   };
-  // particular warehouse name
-  const getWarehouseName = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
-      setWarehouse(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // // particular warehouse name
+  // const getWarehouseName = async () => {
+  //   try {
+  //     const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
+  //     setWarehouse(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
 // Using function
   useEffect(() => {
     getAllWarehouses();
-    getWarehouseName()
+    // getWarehouseName()
   }, []);
 
   return (

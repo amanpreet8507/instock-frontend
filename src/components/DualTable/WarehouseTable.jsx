@@ -10,7 +10,7 @@ import { api } from "../../axios/axios";
 import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
 import WarehouseTableHeadingRow from "../TableHeadingRow/WarehouseTableHeadingRow";
 const WarehouseTable = ({ warehouseArr }) => {
-  const [warehouseData, setWarehouseData] = useState([]);
+  const [warehouseData, setWarehouseData] = useState([]); 
   const [deleteModal, setDeleteModal] = useState(false);
   const [currentWarehouse, setCurrentWarehouse] = useState(null);
 

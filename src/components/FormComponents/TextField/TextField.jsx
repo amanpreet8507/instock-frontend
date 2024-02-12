@@ -8,7 +8,9 @@ const TextField = ({ label, value = "", setValue, error = "" }) => {
         type="text"
         placeholder={label}
         value={value}
-        onChange={setValue}
+        onChange={(e) => 
+        setValue(e.target.value)
+        }
       />
       {error !== "" && <p className="textfield__error">{error}</p>}
     </div>
