@@ -8,6 +8,7 @@ import InventoryCardList from '../../components/InventoryCardList/InventoryCardL
 import InventoryTableList from '../../components/InventoryTableList/InventoryTableList';
 import EditIcon from '../../components/MainHeader/EditIcon';
 import Card from "../../components/Card/Card";
+import {Link} from "react-router-dom"
 
 const WarehouseDetailsPage = () => {
   const[warehouseInventoryArr, setWarehouseInventoryArr] = useState([])
@@ -44,7 +45,7 @@ const WarehouseDetailsPage = () => {
       <Card>
       <div className='main__header-div'>
         <MainHeader headerTitle="Washington" />
-        <EditIcon/>
+        <Link to={`/warehouses/edit/${warehouseID}`}><EditIcon/></Link>
         </div>
         {warehouseAddress && <AddressCard location={warehouseAddress[0]}/>}
         <InventoryCardList inventoryList={warehouseInventoryArr}/>

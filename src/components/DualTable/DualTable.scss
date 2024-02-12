@@ -44,4 +44,15 @@
   &__data-status{
     width: 27%;
   }
+  &__data-item{
+    margin-left: 2rem;
+    @include desktop{
+      margin-left: 5.1rem;
+    }
+  }
+  &__data-wh{
+    @include desktop{
+      margin-left: 6rem;
+    }
+  }
 }

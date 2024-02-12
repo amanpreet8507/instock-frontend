@@ -45,9 +45,9 @@ const WarehouseTable = ({ warehouseArr }) => {
             <td className="table__data table__data-1">
               <Link to={`/warehouses/${warehouse.id}`} ><ItemButton text={warehouse.warehouse_name} /></Link>
             </td>
-            <td className="table__data table__data-middle">{warehouse.address}</td>
-            <td className="table__data table__data-middle">{warehouse.contact_name}</td>
-            <td className="table__data table__data-middle">
+            <td className="table__data table__data-middle table__data-wh">{warehouse.address}</td>
+            <td className="table__data table__data-middle table__data-wh">{warehouse.contact_name}</td>
+            <td className="table__data table__data-middle table__data-wh">
               {warehouse.contact_phone}
               <br />
               {warehouse.contact_email}

@@ -46,10 +46,10 @@ const InventoryTable = ({ id, category, itemName, status, quantity, warehouseId 
               <ItemButton text={itemName} />
             </Link>
           </td>
-          <td className="table__data table__data-middle">{category}</td>
-          <td className="table__data table__data-middle table__data-status">{status}</td>
-          <td className="table__data table__data-middle">{warehouseName}</td>
-          <td className="table__data table__data-middle">{quantity}</td>
+          <td className="table__data table__data-middle table__data-item">{category}</td>
+          <td className="table__data table__data-middle table__data-status table__data-item">{status}</td>
+          <td className="table__data table__data-middle table__data-item">{warehouseName}</td>
+          <td className="table__data table__data-middle table__data-item">{quantity}</td>
           <td className="table__data table__data-last">
             <img src={deleteIcon} onClick={() => handleDeleteModalOpen(warehouseId)} />
             <Link to={`/inventories/${id}/edit`}>

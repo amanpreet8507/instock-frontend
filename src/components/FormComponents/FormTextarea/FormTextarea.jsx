@@ -8,7 +8,7 @@ const FormTextarea = ({ label, value = "", setValue, error = "" }) => {
         type="text"
         placeholder={label}
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={setValue}
       />
       {error !== "" && <p className="textfield__error">{error}</p>}
     </div>

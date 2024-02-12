@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import MainHeader from "../../components/MainHeader/MainHeader";
 import Card from "../../components/Card/Card";
 import axios from "axios";
@@ -29,7 +29,7 @@ const InventoryDetailsPage = () => {
     <Card>
       <div className="card__header">
         {inventory && <MainHeader headerTitle={inventory.item_name} />}
-        <EditIcon/>
+        <Link to={`/inventories/${id}/edit`}><EditIcon/></Link>
       </div>
       <div className="card__container">
         <h4 className="card__h4">ITEM DESCRIPTION</h4>

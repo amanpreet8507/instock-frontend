@@ -30,11 +30,22 @@
         padding: $mobile-padding;
         display: flex;
         gap: $mobile-padding;
-        //width: 100%;
+        width: 100%;
         background-color: $light-grey;
         @include tablet{
             justify-content: end;
-
         }
     }
+    &__buttons{
+        width: 30%;
+        display: flex;
+        gap: 1rem;
+        margin-right: 2rem;
+        display: flex;
+        justify-content: end;
+    }
+    &__cancel-link{
+        width: 100%;
+    }
+
 }

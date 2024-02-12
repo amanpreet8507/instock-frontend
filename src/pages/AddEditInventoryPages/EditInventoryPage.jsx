@@ -4,10 +4,10 @@ import "./EditInventoryPage.scss";
 import TextField from "../../components/FormComponents/TextField/TextField";
 import FormTextarea from "../../components/FormComponents/FormTextarea/FormTextarea";
 import FormDropdown from "../../components/FormComponents/FormDropdown";
-import RadioButtonSelection from "../../components/FormComponents/RadioButtonSelection/RadioButtonSelection";
 import AddButton from "../../components/Buttons/AddButton";
 import CancelButton from "../../components/Buttons/CancelButton";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import RadioButtonSelection from "../../components/FormComponents/RadioButtonSelection/RadioButtonSelection"
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import Card from "../../components/Card/Card";
 
@@ -21,7 +21,9 @@ const EditInventoryPage = () => {
     category: "",
     warehouse_name: "",
     status: "",
+    quantity: "",
   });
+
   const [selectedStatus, setSelectedStatus] = useState("");
   const [clickSubmit, setClickSubmit] = useState(false);
 
@@ -49,14 +51,7 @@ const EditInventoryPage = () => {
     setClickSubmit(true);
 
     // Validate the form
-    if (
-      inventoryData.item_name === "" ||
-      inventoryData.description === "" ||
-      inventoryData.category === "" ||
-      inventoryData.warehouse_name === "" ||
-      inventoryData.status === ""
-    ) {
-      console.log("Form is invalid");
+    if (!validateForm()) {
       return;
     }
 
@@ -66,16 +61,7 @@ const EditInventoryPage = () => {
       });
 
       if (res.status === 200) {
-        setInventoryData({
-          item_name: "",
-          description: "",
-          category: "",
-          warehouse_name: "",
-          status: "",
-        });
-        setSelectedStatus("");
-        setClickSubmit(false);
-        navigate("/inventory");
+        navigate("/inventories");
       }
     } catch (error) {
       console.log("handleSubmit error:", error);
@@ -100,6 +86,18 @@ const EditInventoryPage = () => {
       );
     }
   };
+
+  const validateForm = () => {
+    return (
+      inventoryData.item_name &&
+      inventoryData.description &&
+      inventoryData.category &&
+      inventoryData.warehouse_name &&
+      inventoryData.status &&
+      (inventoryData.status === "1" || inventoryData.quantity)
+    );
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -107,71 +105,111 @@ const EditInventoryPage = () => {
   return (
     <Card>
       <form onSubmit={handleSubmit}>
-      <div className="main__header-div">
-        <MainHeader headerTitle="Edit Inventory Item" />
-      </div>
-      <div className="main__body-container">
-        <div className="main__body">
-          <h2 className="main__h2">Item Details</h2>
-          <TextField
-            label="Item Name"
-            value={inventoryData.item_name}
-            onChange={(e) =>
-              setInventoryData({ ...inventoryData, item_name: e.target.value })
-            }
-            error={clickSubmit && !inventoryData.item_name ? "Required" : ""}
-          />
-          <FormTextarea
-            label="Description"
-            value={inventoryData.description}
-            onChange={(e) =>
-              setInventoryData({
-                ...inventoryData,
-                description: e.target.value,
-              })
-            }
-            error={
-              clickSubmit && !inventoryData.description ? "Required" : ""
-            }
-          />
-          <FormDropdown
-            label="Category"
-            value={inventoryData.category}
-            options={categoryOptions}
-            onChange={(e) =>
-              setInventoryData({ ...inventoryData, category: e.target.value })
-            }
-            error={clickSubmit && !inventoryData.category ? "Required" : ""}
-          />
+        <div className="main__header-div">
+          <MainHeader headerTitle="Edit Inventory Item" />
         </div>
-        <div className="main__body main__body-right">
-          <h2 className="main__h2">Item Availability</h2>
-          <RadioButtonSelection
-            checked={selectedStatus}
-            onChange={(value) => {
-              setInventoryData({ ...inventoryData, status: value });
-              setSelectedStatus(value);
-            }}
-            error={clickSubmit && !inventoryData.status ? "Required" : ""}
-          />
-          <FormDropdown
-            label="Warehouse"
-            value={inventoryData.warehouse_name}
-            options={warehouseOptions}
-            onChange={(e) =>
-              setInventoryData({
-                ...inventoryData,
-                warehouse_name: e.target.value,
-              })
-            }
-            error={clickSubmit && !inventoryData.warehouse_name ? "Required" : ""}
-          />
+        <div className="main__body-container">
+          <div className="main__body">
+            <h2 className="main__h2">Item Details</h2>
+
+            <TextField
+              label="Item Name"
+              value={inventoryData.item_name}
+              onChange={(e) =>
+                setInventoryData({
+                  ...inventoryData,
+                  item_name: e.target.value,
+                })
+              }
+              error={clickSubmit && !inventoryData.item_name ? "Required" : ""}
+            />
+            <FormTextarea
+              label="Description"
+              value={inventoryData.description}
+              onChange={(e) =>
+                setInventoryData({
+                  ...inventoryData,
+                  description: e.target.value,
+                })
+              }
+              error={
+                clickSubmit && !inventoryData.description ? "Required" : ""
+              }
+            />
+            <FormDropdown
+              label="Category"
+              value={inventoryData.category}
+              options={categoryOptions}
+              onChange={(e) =>
+                setInventoryData({
+                  ...inventoryData,
+                  category: e.target.value,
+                })
+              }
+              error={clickSubmit && !inventoryData.category ? "Required" : ""}
+            />
+          </div>
+          <div className="main__body main__body-right">
+            <h2 className="main__h2">Item Availability</h2>
+
+            <RadioButtonSelection
+              label="Status"
+              options={[
+                { value: "In Stock", label: "In Stock" },
+                { value: "Out of Stock", label: "Out of Stock" },
+              ]}
+              selected={inventoryData.status}
+              onChange={(value) =>
+                setInventoryData({ ...inventoryData, status: value })
+              }
+              error={!inventoryData.status ? "Required" : ""}
+            />
+            {selectedStatus === "In Stock" && (
+              <TextField
+                label="Quantity"
+                value={inventoryData.quantity}
+                onChange={(e) =>
+                  setInventoryData({
+                    ...inventoryData,
+                    quantity: e.target.value,
+                  })
+                }
+                error={
+                  clickSubmit &&
+                  !inventoryData.quantity &&
+                  inventoryData.status === "In Stock"
+                    ? "Required"
+                    : ""
+                }
+              />
+            )}
+            <FormDropdown
+              label="Warehouse"
+              value={inventoryData.warehouse_name}
+              options={warehouseOptions}
+              onChange={(e) =>
+                setInventoryData({
+                  ...inventoryData,
+                  warehouse_name: e.target.value,
+                })
+              }
+              error={
+                clickSubmit &&
+                !inventoryData.warehouse_name &&
+                !inventoryData.status
+                  ? "Required"
+                  : ""
+              }
+            />
+          </div>
         </div>
-      </div>
-      <div className="main__button-div">
-        <CancelButton text="Cancel" className="main__button" />
-        <AddButton children="Save" className="main__button" type="submit" />
-      </div>
+        <div className="main__button-div">
+          <div className="main__buttons">
+
+              <CancelButton text="Cancel" link="/inventories" className="main__button" />
+            <AddButton children="Save" className="main__button" type="submit" />
+          </div>
+        </div>
       </form>
     </Card>
   );
