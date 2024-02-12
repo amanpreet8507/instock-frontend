@@ -1,9 +1,9 @@
-import InventoryTable from "../DualTable/InventoryTable";
+import WarehouseTable from "../DualTable/WarehouseTable";
 import InStockStatus from "../InStockStatus/InStockStatus";
 import OutOfStockStatus from "../OutOfStockStatus/OutOfStockStatus";
 import TableHeadingRow from "../TableHeadingRow/TableHeadingRow";
 
-const InventoryCardList = ({ inventoryList }) => {
+const WarehousTableList = ({ inventoryList }) => {
   return (
     <>
       <TableHeadingRow />
@@ -11,10 +11,8 @@ const InventoryCardList = ({ inventoryList }) => {
         return (
           <li key={inventory.id}>
             <InventoryTable
-              id={inventory.id}
               category={inventory.category}
               itemName={inventory.item_name}
-              warehouseId={inventory.warehouse_id}
               quantity={inventory.quantity}
               status={inventory.status === "In Stock" ? <InStockStatus /> : <OutOfStockStatus />}
             />
@@ -25,4 +23,4 @@ const InventoryCardList = ({ inventoryList }) => {
   );
 };
 
-export default InventoryCardList;
+export default WarehousTableList;

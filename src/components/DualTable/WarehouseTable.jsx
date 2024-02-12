@@ -7,15 +7,21 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 import { api } from "../../axios/axios";
-import {DeleteWarehouseModal} from "../DeleteWarehouseModal/DeleteWarehouseModal";
-
-const WarehouseTable = () => {
+import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
+import WarehouseTableHeadingRow from "../TableHeadingRow/WarehouseTableHeadingRow";
+const WarehouseTable = ({ warehouseArr }) => {
   const [warehouseData, setWarehouseData] = useState([]);
   const [deleteModal, setDeleteModal] = useState(false);
-const handleDeleteModalClose = () => {
-  setDeleteModal(false);
-}
+  const [currentWarehouse, setCurrentWarehouse] = useState(null);
 
+  const handleDeleteModalClose = () => {
+    currentWarehouse && setCurrentWarehouse(null);
+    setDeleteModal(false);
+  };
+  const handleDeleteModalOpen = (warehouse) => {
+    setCurrentWarehouse(warehouse);
+    setDeleteModal(true);
+  };
   const getAllWarehouses = async () => {
     try {
       const response = await api.get("/warehouses");
@@ -31,31 +37,26 @@ const handleDeleteModalClose = () => {
 
   return (
     <>
+      {/* Tablet/Desktop View */}
       <table className="table__warehouse">
-        <tr className="table__row table__heading-row">
-          <TableHeading text="WAREHOUSE" />
-          <TableHeading text="ADDRESS" />
-          <TableHeading text="CONTACT NAME" />
-          <TableHeading
-            text="CONTACT INFORMATION"
-            className="CONTACT INFORMATION"
-          />
-          <th className="table__heading">ACTIONS</th>
-        </tr>
-        {warehouseData.map((warehouse) => (
+        <WarehouseTableHeadingRow />
+        {warehouseArr.map((warehouse) => (
           <tr className="table__row" key={warehouse.id}>
-            <td className="table__data table__warehouse__col-1">
-              <ItemButton text={warehouse.warehouse_name} />
+            <td className="table__data table__data-1">
+              <Link to={`/warehouses/${warehouse.id}`} ><ItemButton text={warehouse.warehouse_name} /></Link>
             </td>
-            <td className="table__data">{warehouse.address}</td>
-            <td className="table__data">{warehouse.contact_name}</td>
-            <td className="table__data">
+            <td className="table__data table__data-middle">{warehouse.address}</td>
+            <td className="table__data table__data-middle">{warehouse.contact_name}</td>
+            <td className="table__data table__data-middle">
               {warehouse.contact_phone}
               <br />
               {warehouse.contact_email}
             </td>
-            <td className="table__data table__warehouse__actions">
-              <img src={deleteIcon} className="table__data__delete__icon" onClick={() => setDeleteModal(true)} />
+            <td className="table__data table__data-last">
+              <img
+                src={deleteIcon}
+                onClick={() => handleDeleteModalOpen(warehouse)}
+              />
               <Link to={`/warehouses/edit/${warehouse.id}`}>
                 <img src={editIcon} />
               </Link>
@@ -63,7 +64,12 @@ const handleDeleteModalClose = () => {
           </tr>
         ))}
       </table>
-     {deleteModal && <DeleteWarehouseModal onClose={handleDeleteModalClose}/>}
+      {deleteModal && (
+        <DeleteWarehouseModal
+          onClose={handleDeleteModalClose}
+          warehouse={currentWarehouse}
+        />
+      )}
     </>
   );
 };

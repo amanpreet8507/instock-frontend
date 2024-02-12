@@ -10,19 +10,20 @@
         border-radius: $border-radius;
         height: $mobile-button-height;
         padding: 0 15px;
-        width: 90%;
+        width: 92%;
         background-image: url('../../../assets/icons/search-24px.svg');
         background-repeat: no-repeat;
         background-position: right center ;
         font-family: "Titillium", "Arial", sans-serif, serif;
-        
+        margin: $mobile-padding 0;
         @include tablet{
           height: $tablet-button-height;
+          width: 70%;
+          margin: 0 $tablet-padding;
         }
         @include desktop{
           font-size: $desktop-p-font-large;
           line-height: $desktop-p-height-large;
-          width: 150%;
         }
     }
   }

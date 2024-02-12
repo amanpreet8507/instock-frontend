@@ -9,6 +9,7 @@ import AddButton from "../../components/Buttons/AddButton";
 import CancelButton from "../../components/Buttons/CancelButton";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Card from "../../components/Card/Card";
 
 const EditInventoryPage = () => {
   const { id } = useParams();
@@ -104,7 +105,7 @@ const EditInventoryPage = () => {
   }, []);
 
   return (
-    <main>
+    <Card>
       <form onSubmit={handleSubmit}>
       <div className="main__header-div">
         <MainHeader headerTitle="Edit Inventory Item" />
@@ -172,7 +173,7 @@ const EditInventoryPage = () => {
         <AddButton children="Save" className="main__button" type="submit" />
       </div>
       </form>
-    </main>
+    </Card>
   );
 };
 
