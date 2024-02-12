@@ -5,7 +5,7 @@ import backArrow from "../../assets/icons/arrow_back-24px.svg";
 import { api } from "../../axios/axios";
 import AddButton  from "../Buttons/AddButton";
 import CancelButton  from "../Buttons/CancelButton";
-import {Card} from "../Card/Card";
+import Card from "../Card/Card";
 import {Link, useNavigate} from "react-router-dom"
 
 const phoneNumberRegex = /^\+\d{1,3}\s\(\d{3}\)\s\d{3}-\d{4}$/;

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import InventoryCardList from '../../components/InventoryCardList/InventoryCardList';
 import InventoryTableList from '../../components/InventoryTableList/InventoryTableList';
 import EditIcon from '../../components/MainHeader/EditIcon';
+import Card from "../../components/Card/Card";
 
 const WarehouseDetailsPage = () => {
   const[warehouseInventoryArr, setWarehouseInventoryArr] = useState([])
@@ -40,7 +41,7 @@ const WarehouseDetailsPage = () => {
 
   return (
     <>
-      <main className="main">
+      <Card>
       <div className='main__header-div'>
         <MainHeader headerTitle="Washington" />
         <EditIcon/>
@@ -48,7 +49,7 @@ const WarehouseDetailsPage = () => {
         {warehouseAddress && <AddressCard location={warehouseAddress[0]}/>}
         <InventoryCardList inventoryList={warehouseInventoryArr}/>
         <InventoryTableList inventoryList={warehouseInventoryArr}/>
-      </main>
+      </Card>
     </>
   );
 };

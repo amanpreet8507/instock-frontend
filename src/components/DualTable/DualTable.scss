@@ -32,10 +32,16 @@
   }
   &__data-middle{
     justify-content: flex-start;
-    margin-left: 6.5rem;
+    @include desktop{
+      margin-left: 2.5rem;
+    }
+
   }
   &__data-last{
     justify-content: end;
     gap: 2rem;
+  }
+  &__data-status{
+    width: 27%;
   }
 }

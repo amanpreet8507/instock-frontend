@@ -6,6 +6,7 @@ import FormDropdown from "../../components/FormComponents/FormDropdown";
 import RadioButtonSelection from "../../components/FormComponents/RadioButtonSelection/RadioButtonSelection";
 import AddButton from "../../components/Buttons/AddButton";
 import CancelButton from "../../components/Buttons/CancelButton";
+import Card from "../../components/Card/Card"
 
 const AddNewInventoryPage = () => {
   const categoryOptions = [
@@ -32,7 +33,7 @@ const AddNewInventoryPage = () => {
   const [selectedStatus, setSelectedStatus] = useState("");
 
   return (
-    <main>
+    <Card>
       <div className="main__header-div">
         <MainHeader headerTitle="Add New Inventory Item" />
       </div>
@@ -57,7 +58,7 @@ const AddNewInventoryPage = () => {
         <CancelButton text="Cancel" className="main__button" />
         <AddButton children="Save" className="main__button" />
       </div>
-    </main>
+    </Card>
   );
 };
 
