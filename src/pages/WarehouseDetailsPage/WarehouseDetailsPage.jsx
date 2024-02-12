@@ -28,8 +28,8 @@ const WarehouseDetailsPage = () => {
     const addressDetails = response.data;
     setWarehouseAddress(addressDetails);
     console.log(addressDetails)
-
   }
+  
 {/****************** Using fetch functions *****************/}
   useEffect(()=>{
     fetchInventories()
