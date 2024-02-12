@@ -7,6 +7,7 @@
   margin: -5rem 1rem 1rem;
   background-color: $white;
   border-radius: 4px;
+  padding-bottom: $tablet-padding;
   @include tablet {
     margin: -3.5rem 1rem 1rem;
   }

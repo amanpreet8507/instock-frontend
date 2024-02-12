@@ -7,9 +7,9 @@ const InventoryCardList = ({ inventoryList }) => {
   return (
     <>
       <TableHeadingRow />
-      {inventoryList.map((inventory) => {
+      {inventoryList.map((inventory, index) => {
         return (
-          <li key={inventory.id}>
+          <li key={index}>
             <InventoryTable
               id={inventory.id}
               category={inventory.category}

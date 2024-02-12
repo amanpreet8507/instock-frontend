@@ -27,7 +27,7 @@ const InventoryTable = ({ id, category, itemName, status, quantity, warehouseId 
   useEffect(() => {
     const fetchWarehouseName = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/inventories/${warehouseId}`);
+        const response = await axios.get(`http://localhost:8080/inventories/${id}`);
         setWarehouseName(response.data.warehouse_name);
       } catch (error) {
         console.error("Error fetching warehouse name:", error);
