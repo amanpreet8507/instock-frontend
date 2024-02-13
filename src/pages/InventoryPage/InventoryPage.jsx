@@ -7,30 +7,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const InventoryPage = () => {
-  const [listData, setListData] = useState([])
-  {/****************** Fuction to fetch Inventory List Array ********************/}
-  const fetchData = async() => {
-      const response = await axios.get('http://localhost:8080/inventories')
-      // const response2 = await axios.get(`http://localhost:8080/warehouses`)
-      // const data1 = response.data.map(item => item.warehouse_id);
-      // const data2 = response2.data.map(item => item.id);
-      // // Compare the arrays and append if equal
-      // const combinedResult = [];
-      // data1.forEach(item1 => {
-      //   if (data2.includes(item1)) {
-      //     combinedResult.push(item1);
-      //   }
-      // });
-      // // Respond with the combined result
-      // console.log(combinedResult);
+  const [listData, setListData] = useState([]);
 
-      const fetchedList= response.data
-      setListData(fetchedList)
-  }
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/inventories');
+      setListData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  useEffect(()=> {
-    fetchData()
-  },[])
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <>
       <Card>
@@ -43,7 +34,6 @@ const InventoryPage = () => {
         <InventoryCardList inventoryList={listData}/>
         <InventoryTableList inventoryList={listData} />
       </Card>
-
     </>
   );
 };

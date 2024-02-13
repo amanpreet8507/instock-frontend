@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import TextField from "../../components/FormComponents/TextField/TextField";
 import FormTextarea from "../../components/FormComponents/FormTextarea/FormTextarea";
@@ -7,11 +7,20 @@ import RadioButtonSelection from "../../components/FormComponents/RadioButtonSel
 import AddButton from "../../components/Buttons/AddButton";
 import CancelButton from "../../components/Buttons/CancelButton";
 import Card from "../../components/Card/Card";
-import {Link} from 'react-router-dom';
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { api } from "../../axios/axios";
 
-const AddNewInventoryPage = () => {
+const AddNewInventoryPage = ({ onCancel }) => {
+  const navigate = useNavigate();
+  const [itemName, setItemName] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [status, setStatus] = useState("In Stock");
+  const [quantity, setQuantity] = useState("");
+  const [warehouse, setWarehouse] = useState("");
+  const [clickSubmit, setClickSubmit] = useState(false);
+
+  // Option values for category and warehouse dropdowns
   const categoryOptions = [
     "Electronics",
     "Apparel",
@@ -31,18 +40,7 @@ const AddNewInventoryPage = () => {
     "Boston",
     "Chicago",
   ];
-  const navigate = useNavigate(); 
-  const [showForm, setShowForm] = useState(false);
-  const [itemName, setItemName] = useState("");
-  const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("In Stock");
-  const [category, setCategory] = useState("");
-  const [warehouse, setWarehouse] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
 
-
-  
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
     if (e.target.value === "Out of Stock") {
@@ -51,50 +49,51 @@ const AddNewInventoryPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission behavior
+    setClickSubmit(true);
+
     // Front-end validation
     if (
-      !itemName ||
-      !description ||
-      !status ||
-      !category ||
-      !warehouse ||
+      itemName === "" ||
+      description === "" ||
+      status === "" ||
+      category === "" ||
+      warehouse === "" ||
       (status === "In Stock" && !quantity)
     ) {
-      setErrorMessage("Please fill out all required fields.");
+      console.log("Please fill out all required fields");
       return;
     }
-    const  createOBJ = {
-      "warehouse_id": warehouse,
-      "description": description,
-      "status": status,
-      "category": category,
-      "quantity": quantity,
-      "item_name": itemName,
-
-    } 
-    const newItem = { itemName, description, status, category, quantity, warehouse };
 
     try {
-      const response = await axios.post("/inventories", newItem);
-      const data = response.data
-      console.log(response.data)
+      // Perform API request to add inventory item
+    
+      const response = await api.post("/inventories", {
+        itemName,
+        description,
+        status,
+        category,
+        warehouse,
+      });
+      console.log(response.data);
 
-      return data;
-
+      // After successful submission, clear form fields and navigate to inventory page
+      clearForm();
+      setClickSubmit(false);
+      navigate("/inventories");
     } catch (error) {
-      console.error("Error while posting item", error);
+      console.log("handleSubmit error:", error);
     }
+  };
 
-    // Clear form fields and hide form after successful submission
+  const clearForm = () => {
+    // Clear form fields
     setItemName("");
     setDescription("");
     setStatus("");
-    setCategory("Select...");
+    setCategory("");
     setQuantity("");
-    setWarehouse("")
-    setShowForm(false);
-    setErrorMessage("");
+    setWarehouse("");
   };
 
   return (
@@ -140,22 +139,20 @@ const AddNewInventoryPage = () => {
                 setValue={(e) => setQuantity(e.target.value)}
               />
             )}
-           <FormDropdown
+            <FormDropdown
               label="Warehouse"
               options={warehouseOptions}
               value={warehouse}
-              setValue={(e) =>
-                setWarehouse(e.target.value)
-              }
+              setValue={(e) => setWarehouse(e.target.value)}
             />
           </div>
         </div>
         <div className="main__button-div">
           <div className="main__buttons">
-            <CancelButton link="/inventories" text="Cancel" className="main__button"/>
-            <AddButton children="Save" className="main__button" type="submit" />
+            <CancelButton link="/inventories" text="Cancel" />
+            <AddButton children="Save" type="submit" />
           </div>
-          </div>
+        </div>
       </form>
     </Card>
   );
