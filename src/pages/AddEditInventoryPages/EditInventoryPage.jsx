@@ -12,8 +12,13 @@ import axios from "axios";
 import Card from "../../components/Card/Card";
 
 const EditInventoryPage = () => {
+
+
   const { id } = useParams();
   const navigate = useNavigate();
+  const [clickSubmit, setClickSubmit] = useState(false);
+  const [status, setStatus] = useState("In Stock");
+  const [quantity, setQuantity] = useState("");
 
   const [inventoryData, setInventoryData] = useState({
     item_name: "",
@@ -23,9 +28,13 @@ const EditInventoryPage = () => {
     status: "",
     quantity: "",
   });
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
+    if (e.target.value === "Out of Stock") {
+      setQuantity("");
+    }
+  };
 
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const [clickSubmit, setClickSubmit] = useState(false);
 
   const categoryOptions = [
     "Electronics",
@@ -67,7 +76,7 @@ const EditInventoryPage = () => {
       console.log("handleSubmit error:", error);
     }
   };
-
+{/******************fetching data and throwing inside the form fields by defaule ************/}
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -76,9 +85,9 @@ const EditInventoryPage = () => {
       const inventoryData = response.data;
       setInventoryData({
         ...inventoryData,
-        status: inventoryData.status === "In Stock" ? "1" : "2",
+        status: inventoryData.status === "In Stock" ? "In Stock" : "Out of Stock",
       });
-      setSelectedStatus(inventoryData.status);
+      setStatus(inventoryData.status);
     } catch (error) {
       console.error(
         "Error while fetching inventory details in Edit Inventory Page",
@@ -94,9 +103,14 @@ const EditInventoryPage = () => {
       inventoryData.category &&
       inventoryData.warehouse_name &&
       inventoryData.status &&
-      (inventoryData.status === "1" || inventoryData.quantity)
+      (inventoryData.status === "In Stock" || inventoryData.quantity)
     );
   };
+
+  {/******* put the data to api***********/}
+
+
+
 
   useEffect(() => {
     fetchData();
@@ -151,38 +165,19 @@ const EditInventoryPage = () => {
           </div>
           <div className="main__body main__body-right">
             <h2 className="main__h2">Item Availability</h2>
-
             <RadioButtonSelection
-              label="Status"
-              options={[
-                { value: "In Stock", label: "In Stock" },
-                { value: "Out of Stock", label: "Out of Stock" },
-              ]}
-              selected={inventoryData.status}
-              onChange={(value) =>
-                setInventoryData({ ...inventoryData, status: value })
-              }
-              error={!inventoryData.status ? "Required" : ""}
+              checked={status}
+              setValue={handleStatusChange}
             />
-            {selectedStatus === "In Stock" && (
+
+            {status === "In Stock" && (
               <TextField
                 label="Quantity"
                 value={inventoryData.quantity}
-                onChange={(e) =>
-                  setInventoryData({
-                    ...inventoryData,
-                    quantity: e.target.value,
-                  })
-                }
-                error={
-                  clickSubmit &&
-                  !inventoryData.quantity &&
-                  inventoryData.status === "In Stock"
-                    ? "Required"
-                    : ""
-                }
+                setValue={(e) => setQuantity(e.target.value)}
               />
             )}
+           
             <FormDropdown
               label="Warehouse"
               value={inventoryData.warehouse_name}

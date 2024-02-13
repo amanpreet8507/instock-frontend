@@ -40,7 +40,7 @@ const AddNewInventoryPage = () => {
   const [warehouse, setWarehouse] = useState("");
   const [quantity, setQuantity] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [cancelClick, setCancelClick] = useState(false)
+
 
   
   const handleStatusChange = (e) => {
@@ -64,20 +64,26 @@ const AddNewInventoryPage = () => {
       setErrorMessage("Please fill out all required fields.");
       return;
     }
+    const  createOBJ = {
+      "warehouse_id": warehouse,
+      "description": description,
+      "status": status,
+      "category": category,
+      "quantity": quantity,
+      "item_name": itemName,
 
+    } 
     const newItem = { itemName, description, status, category, quantity, warehouse };
 
     try {
       const response = await axios.post("/inventories", newItem);
       const data = response.data
+      console.log(response.data)
 
-      if (data.status === 200) {
-        setCancelClick(navigate("/inventories"));
-      }
-      return data
-      console.log("Item added successfully:", data);
+      return data;
+
     } catch (error) {
-      console.error(error);
+      console.error("Error while posting item", error);
     }
 
     // Clear form fields and hide form after successful submission
@@ -146,7 +152,7 @@ const AddNewInventoryPage = () => {
         </div>
         <div className="main__button-div">
           <div className="main__buttons">
-            <CancelButton link="/inventories" text="Cancel" className="main__button" onSubmit={cancelClick}/>
+            <CancelButton link="/inventories" text="Cancel" className="main__button"/>
             <AddButton children="Save" className="main__button" type="submit" />
           </div>
           </div>
