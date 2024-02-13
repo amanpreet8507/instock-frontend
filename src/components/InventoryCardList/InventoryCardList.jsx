@@ -3,9 +3,10 @@ import InStockStatus from "../InStockStatus/InStockStatus";
 import OutOfStockStatus from "../OutOfStockStatus/OutOfStockStatus";
 
 const InventoryCardList = ({ inventoryList }) => {
-  return inventoryList.map((inventory) => {
+  return inventoryList.map((inventory, index) => {
     return (
-      <li>
+      // id was repeating so used index to remove the key error
+      <li key={index}>
         <InventoryItemCard
           category={inventory.category}
           itemName={inventory.item_name}

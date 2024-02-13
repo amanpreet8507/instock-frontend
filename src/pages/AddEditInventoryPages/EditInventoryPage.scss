@@ -1,0 +1,58 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/global' as *;
+@use '../../styles/partials/mixins' as *;
+
+.main{
+    &__body{
+        border-bottom: 1px solid $cloud;
+        padding: $mobile-padding;
+        @include tablet{
+            padding: 0 $tablet-padding;
+            margin: $tablet-padding 0;
+            width: 50%;
+            border-bottom: none;
+        }
+    }
+    &__body-right{
+        @include tablet{
+            border-left: 1px solid $cloud;
+        }       
+    }
+    &__body-container{
+        @include tablet{
+            display: flex;
+        }
+    }
+    &__h2{
+        padding-bottom: $mobile-padding;
+    }
+    &__button-div{
+        padding: $mobile-padding;
+        display: flex;
+        gap: $mobile-padding;
+        width: 100%;
+        background-color: $light-grey;
+        @include tablet{
+            justify-content: end;
+        }
+    }
+    &__buttons{
+        width: 100%;
+        display: flex;
+        gap: 1rem;
+        margin-right: 4rem;
+        text-align: center;
+        align-items: center;
+        display: flex;
+       
+        @include tablet{
+            margin-right: 2rem;
+            width: 30%;
+            justify-content: end;
+        }
+    }
+    &__button{
+        width: 50%;
+    }
+
+}

@@ -2,15 +2,7 @@
 @use '../../styles/partials/global' as *;
 @use '../../styles/partials/mixins' as *;
 
-.main{
-    &__header-div{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        text-align: center;
-        padding: $tablet-padding;
-    }
-}
+
 
 .header{
     &__icon-and-heading{

@@ -4,11 +4,11 @@
 @use "../../styles/partials/typography" as *;
 
 .footer__container {
+  padding: 2rem;
   text-align: center;
   &--text {
     font-family: "Titillium", "Arial", sans-serif;
     color: $slate;
     background-color: $light-grey;
-    font-size: 1rem;
   }
 }
