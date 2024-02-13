@@ -37,15 +37,22 @@
         }
     }
     &__buttons{
-        width: 30%;
+        width: 100%;
         display: flex;
         gap: 1rem;
-        margin-right: 2rem;
+        margin-right: 4rem;
+        text-align: center;
+        align-items: center;
         display: flex;
-        justify-content: end;
+       
+        @include tablet{
+            margin-right: 2rem;
+            width: 30%;
+            justify-content: end;
+        }
     }
-    &__cancel-link{
-        width: 100%;
+    &__button{
+        width: 50%;
     }
 
 }

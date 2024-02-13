@@ -11,7 +11,7 @@ import {Link} from 'react-router-dom';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const AddNewInventoryPage = () => {
+const AddNewInventoryPage = ({onCancel}) => {
   const categoryOptions = [
     "Electronics",
     "Apparel",
@@ -32,15 +32,15 @@ const AddNewInventoryPage = () => {
     "Chicago",
   ];
   const navigate = useNavigate(); 
-  const [showForm, setShowForm] = useState(false);
-  const [itemName, setItemName] = useState("");
+  const [item_name, setItemName] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("In Stock");
   const [category, setCategory] = useState("");
-  const [warehouse, setWarehouse] = useState("");
+  const [warehouse_id, setWarehouse] = useState("");
   const [quantity, setQuantity] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [clickSubmit, setClickSubmit] = useState(false);
 
   
   const handleStatusChange = (e) => {
@@ -50,51 +50,43 @@ const AddNewInventoryPage = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Front-end validation
+  const handleSubmit = async () => {
+    setClickSubmit(true);
+
     if (
-      !itemName ||
+      !item_name ||
       !description ||
       !status ||
       !category ||
-      !warehouse ||
+      !warehouse_id ||
       (status === "In Stock" && !quantity)
     ) {
       setErrorMessage("Please fill out all required fields.");
       return;
     }
-    const  createOBJ = {
-      "warehouse_id": warehouse,
-      "description": description,
-      "status": status,
-      "category": category,
-      "quantity": quantity,
-      "item_name": itemName,
 
-    } 
-    const newItem = { itemName, description, status, category, quantity, warehouse };
+    const newItem = { item_name: item_name, description:description, status:status, category:category, quantity:quantity, warehouse_id:warehouse_id };
 
     try {
-      const response = await axios.post("/inventories", newItem);
-      const data = response.data
-      console.log(response.data)
-
-      return data;
-
+      const response = await axios.post("http://localhost:8080/inventories", newItem);
+      if(response.status === 201){
+        clearForm();
+        setClickSubmit(false);
+        navigate("/inventories");
+      }
     } catch (error) {
       console.error("Error while posting item", error);
     }
 
-    // Clear form fields and hide form after successful submission
+    const clearForm = () =>{
     setItemName("");
     setDescription("");
     setStatus("");
     setCategory("Select...");
     setQuantity("");
     setWarehouse("")
-    setShowForm(false);
     setErrorMessage("");
+    }
   };
 
   return (
@@ -109,14 +101,24 @@ const AddNewInventoryPage = () => {
             <h2 className="main__h2">Item Details</h2>
             <TextField
               label="Item Name"
-              value={itemName}
+              value={item_name}
               setValue={(e) => setItemName(e.target.value)}
+              error={
+                clickSubmit && item_name === ""
+                  ? "Item name is required"
+                  : ""
+              }
               required
             />
             <FormTextarea
               label="Description"
               value={description}
               setValue={(e) => setDescription(e.target.value)}
+              error={
+                clickSubmit && description === ""
+                  ? "Description is required"
+                  : ""
+              }
               required
             />
             <FormDropdown
@@ -124,6 +126,12 @@ const AddNewInventoryPage = () => {
               options={categoryOptions}
               value={category}
               setValue={(e) => setCategory(e.target.value)}
+              error={
+                clickSubmit && category === ""
+                  ? "Category is required"
+                  : ""
+              }
+              required
             />
           </div>
           <div className="main__body main__body-right">
@@ -131,6 +139,12 @@ const AddNewInventoryPage = () => {
             <RadioButtonSelection
               checked={status}
               setValue={handleStatusChange}
+              error={
+                clickSubmit && status === ""
+                  ? "Status is required"
+                  : ""
+              }
+              required
             />
 
             {status === "In Stock" && (
@@ -138,22 +152,34 @@ const AddNewInventoryPage = () => {
                 label="Quantity"
                 value={quantity}
                 setValue={(e) => setQuantity(e.target.value)}
+                error={
+                  clickSubmit && quantity === ""
+                    ? "Quantity is required"
+                    : ""
+                }
+                required
               />
             )}
            <FormDropdown
               label="Warehouse"
               options={warehouseOptions}
-              value={warehouse}
+              value={warehouse_id}
               setValue={(e) =>
                 setWarehouse(e.target.value)
               }
+              error={
+                clickSubmit && warehouse_id === ""
+                  ? "Warehouse ID is required"
+                  : ""
+              }
+              required
             />
           </div>
         </div>
         <div className="main__button-div">
           <div className="main__buttons">
             <CancelButton link="/inventories" text="Cancel" className="main__button"/>
-            <AddButton children="Save" className="main__button" type="submit" />
+            <AddButton action={handleSubmit} children="Save" className="main__button" type="submit" />
           </div>
           </div>
       </form>
