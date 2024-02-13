@@ -5,22 +5,22 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import { Link, useParams } from "react-router-dom";
 import "./DualTable.scss";
 import { useEffect, useState } from "react";
-import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
+import DeleteWarehouseModal from "../DeleteModal/DeleteWarehouseModal";
 import axios from "axios";
 
 const InventoryTable = ({ id, category, itemName, status, quantity, warehouseId }) => {
   //const { id } = useParams();
   const [warehouseName, setWarehouseName] = useState("");
   const [deleteModal, setDeleteModal] = useState(false);
-  const [currentWarehouse, setCurrentWarehouse] = useState(null);
+  const [currentInventory, setCurrentInventory] = useState(null);
 
   const handleDeleteModalClose = () => {
-    currentWarehouse && setCurrentWarehouse(null);
+    currentInventory && setCurrentInventory(null);
     setDeleteModal(false);
   };
 
-  const handleDeleteModalOpen = (warehouse) => {
-    setCurrentWarehouse(warehouse);
+  const handleDeleteModalOpen = (inventory) => {
+    setCurrentInventory(inventory);
     setDeleteModal(true);
   };
 
@@ -59,7 +59,7 @@ const InventoryTable = ({ id, category, itemName, status, quantity, warehouseId 
         </tr>
       </table>
       {deleteModal && (
-        <DeleteWarehouseModal onClose={handleDeleteModalClose} warehouse={currentWarehouse} />
+        <DeleteWarehouseModal onClose={handleDeleteModalClose} inventory={currentInventory} />
       )}
     </>
   );

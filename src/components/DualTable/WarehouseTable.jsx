@@ -7,7 +7,7 @@ import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 import { api } from "../../axios/axios";
-import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
+import DeleteWarehouseModal from "../DeleteModal/DeleteWarehouseModal";
 import WarehouseTableHeadingRow from "../TableHeadingRow/WarehouseTableHeadingRow";
 const WarehouseTable = ({ warehouseArr }) => {
   const [warehouseData, setWarehouseData] = useState([]); 

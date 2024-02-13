@@ -4,7 +4,7 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import ItemButton from "../ItemButton/ItemButton";
 import { Link } from "react-router-dom";
 import { useState, useEffect} from "react";
-import DeleteWarehouseModal from "../DeleteWarehouseModal/DeleteWarehouseModal";
+import DeleteWarehouseModal from "../DeleteModal/DeleteWarehouseModal";
 import axios from "axios";
 import {api} from "../../axios/axios"
 
