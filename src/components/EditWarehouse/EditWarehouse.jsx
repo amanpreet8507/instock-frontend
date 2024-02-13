@@ -117,7 +117,7 @@ const EditWarehouse = () => {
               <TextField
                 label="Warehouse Name"
                 value={warehouse_name}
-                setValue={setWarehouseName}
+                setValue={(e)=>setWarehouseName(e.target.value)}
                 error={
                   clickSubmit && warehouse_name === ""
                     ? "Warehouse name is required"
@@ -127,7 +127,7 @@ const EditWarehouse = () => {
               <TextField
                 label="Street Address"
                 value={address}
-                setValue={setAddress}
+                setValue={(e)=>setWarehouseName(e.target.value)}
                 error={
                   clickSubmit && address === "" ? "Address is required" : ""
                 }
@@ -135,13 +135,13 @@ const EditWarehouse = () => {
               <TextField
                 label="City"
                 value={city}
-                setValue={setCity}
+                setValue={(e)=>setCity(e.target.value)}
                 error={clickSubmit && city === "" ? "City is required" : ""}
               />
               <TextField
                 label="Country"
                 value={country}
-                setValue={setCountry}
+                setValue={(e)=>setCountry(e.target.value)}
                 error={
                   clickSubmit && country === "" ? "Country is required" : ""
                 } // if (clickSubmit && country === "") then return 'Country is required' else return "" (empty string
@@ -155,7 +155,7 @@ const EditWarehouse = () => {
               <TextField
                 label="Contact Name"
                 value={contact_name}
-                setValue={setContactName}
+                setValue={(e)=>setContactName(e.target.value)}
                 error={
                   clickSubmit && contact_name === ""
                     ? "Contact name is required"
@@ -165,7 +165,7 @@ const EditWarehouse = () => {
               <TextField
                 label="Position"
                 value={position}
-                setValue={setPosition}
+                setValue={(e)=>setPosition(e.target.value)}
                 error={
                   clickSubmit && contact_name === ""
                     ? "Position is required"
@@ -175,7 +175,7 @@ const EditWarehouse = () => {
               <TextField
                 label="Phone Number"
                 value={phone_number}
-                setValue={setPhoneNumber}
+                setValue={(e)=>setPhoneNumber(e.target.value)}
                 error={
                   clickSubmit &&
                   (phone_number === "" || !phoneNumberRegex.test(phone_number))
@@ -186,7 +186,7 @@ const EditWarehouse = () => {
               <TextField
                 label="Email"
                 value={email}
-                setValue={setEmail}
+                setValue={(e)=>setEmail(e.target.value)}
                 error={
                   clickSubmit && (email === "" || !emailRegex.test(email))
                     ? "Enter valid email"

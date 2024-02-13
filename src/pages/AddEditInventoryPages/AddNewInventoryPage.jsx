@@ -7,8 +7,7 @@ import RadioButtonSelection from "../../components/FormComponents/RadioButtonSel
 import AddButton from "../../components/Buttons/AddButton";
 import CancelButton from "../../components/Buttons/CancelButton";
 import Card from "../../components/Card/Card";
-import {Link} from 'react-router-dom';
-import axios from "axios";
+import { api } from "../../axios/axios";
 import { useNavigate } from "react-router-dom";
 
 const AddNewInventoryPage = () => {
@@ -68,7 +67,7 @@ const AddNewInventoryPage = () => {
     const newItem = { item_name: item_name, description:description, status:status, category:category, quantity:quantity, warehouse_id:warehouse_id };
 
     try {
-      const response = await axios.post("http://localhost:8080/inventories", newItem);
+      const response = await api.post("/inventories", newItem);
       if(response.status === 201){
         clearForm();
         setClickSubmit(false);
@@ -92,7 +91,7 @@ const AddNewInventoryPage = () => {
   return (
     <Card>
       <div className="main__header-div">
-        <MainHeader headerTitle="Add New Inventory Item" />
+        <MainHeader headerTitle="Add New Inventory Item" link="/inventories"/>
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -138,7 +137,7 @@ const AddNewInventoryPage = () => {
             <h2 className="main__h2">Item Availability</h2>
             <RadioButtonSelection
               checked={status}
-              setValue={handleStatusChange}
+              onChange={handleStatusChange}
               error={
                 clickSubmit && status === ""
                   ? "Status is required"

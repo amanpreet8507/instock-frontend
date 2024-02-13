@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './RadioButtonSelection.scss';
 
-const RadioButtonSelection = ({ checked, setValue }) => {
-
+const RadioButtonSelection = ({ checked, onChange }) => {
   return (
     <div className="radio-button">
       <div className="radio-button-selection__option">
@@ -13,7 +12,7 @@ const RadioButtonSelection = ({ checked, setValue }) => {
           name="stockstatus"
           value="In Stock"
           checked={checked === 'In Stock'}
-          onChange={setValue}
+          onChange={onChange} 
         />
         <label htmlFor="instock">In Stock</label>
       </div>
@@ -24,7 +23,7 @@ const RadioButtonSelection = ({ checked, setValue }) => {
           name="stockstatus"
           value="Out of Stock"
           checked={checked === 'Out of Stock'}
-          onChange={setValue}
+          onChange={onChange}
         />
         <label htmlFor="outofstock">Out of Stock</label>
       </div>
