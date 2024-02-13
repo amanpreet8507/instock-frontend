@@ -127,7 +127,7 @@ const EditWarehouse = () => {
               <TextField
                 label="Street Address"
                 value={address}
-                setValue={(e)=>setWarehouseName(e.target.value)}
+                setValue={(e)=>setAddress(e.target.value)}
                 error={
                   clickSubmit && address === "" ? "Address is required" : ""
                 }
