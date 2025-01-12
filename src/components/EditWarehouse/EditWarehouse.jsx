@@ -22,7 +22,6 @@ const EditWarehouse = () => {
   const [position, setPosition] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-
   const [clickSubmit, setClickSubmit] = useState(false);
 
   const handleSubmit = async () => {

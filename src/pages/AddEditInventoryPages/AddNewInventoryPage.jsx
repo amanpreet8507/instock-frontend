@@ -9,8 +9,12 @@ import CancelButton from "../../components/Buttons/CancelButton";
 import Card from "../../components/Card/Card";
 import { api } from "../../axios/axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
 
 const AddNewInventoryPage = () => {
+  const [warehousesNames, setWarehousesNames] = useState([]);
+
   const categoryOptions = [
     "Electronics",
     "Apparel",
@@ -30,7 +34,20 @@ const AddNewInventoryPage = () => {
     "Boston",
     "Chicago",
   ];
-  const navigate = useNavigate(); 
+  const getAllWarehousesNames = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/warehouses");
+      const names = response.data.map(warehouse => warehouse.warehouse_name);
+      setWarehousesNames(names);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(()=>{
+    getAllWarehousesNames();
+  },[]);
+  const navigate = useNavigate();
   const [item_name, setItemName] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("In Stock");
@@ -41,7 +58,6 @@ const AddNewInventoryPage = () => {
 
   const [clickSubmit, setClickSubmit] = useState(false);
 
-  
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
     if (e.target.value === "Out of Stock") {
@@ -49,7 +65,8 @@ const AddNewInventoryPage = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     setClickSubmit(true);
 
     if (
@@ -64,34 +81,42 @@ const AddNewInventoryPage = () => {
       return;
     }
 
-    const newItem = { item_name: item_name, description:description, status:status, category:category, quantity:quantity, warehouse_id:warehouse_id };
+    const newItem = {
+      item_name: item_name,
+      description: description,
+      status: status,
+      category: category,
+      quantity: quantity,
+      warehouse_id: warehouse_id,
+    };
 
     try {
       const response = await api.post("/inventories", newItem);
-      if(response.status === 201){
+      if (response.status === 201) {
         clearForm();
         setClickSubmit(false);
         navigate("/inventories");
       }
     } catch (error) {
       console.error("Error while posting item", error);
+      setErrorMessage("Failed to add new inventory. Please try again.");
     }
 
-    const clearForm = () =>{
-    setItemName("");
-    setDescription("");
-    setStatus("");
-    setCategory("Select...");
-    setQuantity("");
-    setWarehouse("")
-    setErrorMessage("");
-    }
+    const clearForm = () => {
+      setItemName("");
+      setDescription("");
+      setStatus("");
+      setCategory("Select...");
+      setQuantity("");
+      setWarehouse("");
+      setErrorMessage("");
+    };
   };
 
   return (
     <Card>
       <div className="main__header-div">
-        <MainHeader headerTitle="Add New Inventory Item" link="/inventories"/>
+        <MainHeader headerTitle="Add New Inventory Item" link="/inventories" />
       </div>
 
       <form onSubmit={handleSubmit}>
@@ -103,9 +128,7 @@ const AddNewInventoryPage = () => {
               value={item_name}
               setValue={(e) => setItemName(e.target.value)}
               error={
-                clickSubmit && item_name === ""
-                  ? "Item name is required"
-                  : ""
+                clickSubmit && item_name === "" ? "Item name is required" : ""
               }
               required
             />
@@ -124,11 +147,9 @@ const AddNewInventoryPage = () => {
               label="Category"
               options={categoryOptions}
               value={category}
-              setValue={(e) => setCategory(e.target.value)}
+              setValue={setCategory}
               error={
-                clickSubmit && category === ""
-                  ? "Category is required"
-                  : ""
+                clickSubmit && category === "" ? "Category is required" : ""
               }
               required
             />
@@ -138,11 +159,7 @@ const AddNewInventoryPage = () => {
             <RadioButtonSelection
               checked={status}
               onChange={handleStatusChange}
-              error={
-                clickSubmit && status === ""
-                  ? "Status is required"
-                  : ""
-              }
+              error={clickSubmit && status === "" ? "Status is required" : ""}
               required
             />
 
@@ -152,20 +169,16 @@ const AddNewInventoryPage = () => {
                 value={quantity}
                 setValue={(e) => setQuantity(e.target.value)}
                 error={
-                  clickSubmit && quantity === ""
-                    ? "Quantity is required"
-                    : ""
+                  clickSubmit && quantity === "" ? "Quantity is required" : ""
                 }
                 required
               />
             )}
-           <FormDropdown
+            <FormDropdown
               label="Warehouse"
-              options={warehouseOptions}
+              options={warehousesNames}
               value={warehouse_id}
-              setValue={(e) =>
-                setWarehouse(e.target.value)
-              }
+              setValue={setWarehouse}
               error={
                 clickSubmit && warehouse_id === ""
                   ? "Warehouse ID is required"
@@ -177,10 +190,20 @@ const AddNewInventoryPage = () => {
         </div>
         <div className="main__button-div">
           <div className="main__buttons">
-            <CancelButton link="/inventories" text="Cancel" className="main__button"/>
-            <AddButton action={handleSubmit} children="Save" className="main__button" type="submit" />
+            <CancelButton
+              link="/inventories"
+              text="Cancel"
+              className="main__button"
+            />
+            <AddButton
+              link="/inventories"
+              action={handleSubmit}
+              children="Save"
+              className="main__button"
+              type="submit"
+            />
           </div>
-          </div>
+        </div>
       </form>
     </Card>
   );
