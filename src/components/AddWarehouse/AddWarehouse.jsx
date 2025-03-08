@@ -8,7 +8,7 @@ import CancelButton  from "../Buttons/CancelButton";
 import Card from "../Card/Card";
 import {Link, useNavigate} from "react-router-dom"
 
-const phoneNumberRegex = /^\+\d{1,3}\s\(\d{3}\)\s\d{3}-\d{4}$/;
+const phoneNumberRegex = /^\d{10}$/; 
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
 const AddWarehouse = ({ onCancel }) => {
@@ -147,7 +147,7 @@ const AddWarehouse = ({ onCancel }) => {
                 }
               />
               <TextField
-                label="Phone Number (Format : + 1 (123) 456-7890 )"
+                label="Phone Number (Format : 1234567890 )"
                 value={phone_number}
                 setValue={(e)=>setPhoneNumber(e.target.value)}
                 error={

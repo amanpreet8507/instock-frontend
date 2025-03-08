@@ -3,30 +3,31 @@ import MainHeader from "../../components/MainHeader/MainHeader";
 import "./EditInventoryPage.scss";
 import TextField from "../../components/FormComponents/TextField/TextField";
 import FormTextarea from "../../components/FormComponents/FormTextarea/FormTextarea";
-import FormDropdown from "../../components/FormComponents/FormDropdown";
 import AddButton from "../../components/Buttons/AddButton";
 import CancelButton from "../../components/Buttons/CancelButton";
-import RadioButtonSelection from "../../components/FormComponents/RadioButtonSelection/RadioButtonSelection"
+import RadioButtonSelection from "../../components/FormComponents/RadioButtonSelection/RadioButtonSelection";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "../../components/Card/Card";
 import { api } from "../../axios/axios";
+import CategoryDropdown from "../../components/FormComponents/Dropdowns/CategoryDropdown";
+import WarehouseDropdown from "../../components/FormComponents/Dropdowns/WarehouseDropdown";
 
 const EditInventoryPage = () => {
-
-{/****************** Use States ************/}
+  {
+    /****************** Use States ************/
+  }
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const [clickSubmit, setClickSubmit] = useState(false)
-  const [status, setStatus] = useState("In Stock")
-  const [quantity, setQuantity] = useState("")
-  const [itemName, setItemName] = useState("")
-  const [description, setDescription] = useState("")
-  const [warehouse_id, setWarehouseId] = useState("")
-  const [category, setCategory] = useState("")
-
-
+  const [clickSubmit, setClickSubmit] = useState(false);
+  const [status, setStatus] = useState("In Stock");
+  const [quantity, setQuantity] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [description, setDescription] = useState("");
+  const [warehouse_id, setWarehouseId] = useState("");
+  const [category, setCategory] = useState("");
+  const [warehouses, setWarehouses] = useState([]);
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
@@ -34,7 +35,6 @@ const EditInventoryPage = () => {
       setQuantity("");
     }
   };
-
 
   const categoryOptions = [
     "Electronics",
@@ -44,26 +44,28 @@ const EditInventoryPage = () => {
     "Gear",
     "Accessories",
   ];
-  const warehouseOptions = [
-    "Brooklyn",
-    "Washington",
-    "Jersey",
-    "SF",
-    "Santa Monica",
-    "Seattle",
-    "Miami",
-    "Boston",
-    "Chicago",
-  ];
 
-    const inventoryObject = {
+  const warehouseOptions = async () => {
+    try {
+      const response = await api.get("/warehouses");
+      console.log(response.data);
+      return response.data.map(warehouse => ({
+        value: warehouse.id,   // warehouse ID as value
+        label: warehouse.name  // warehouse name as label
+      }));
+    } catch (error) {
+      console.error("Error while fetching warehouseOptions:", error);
+    }
+  };
+
+  const inventoryObject = {
     item_name: itemName,
     description: description,
     category: category,
     warehouse_id: warehouse_id,
     status: status,
     quantity: quantity,
-  }; 
+  };
 
   const handleSubmit = async () => {
     setClickSubmit(true);
@@ -74,7 +76,10 @@ const EditInventoryPage = () => {
     }
 
     try {
-      const res = await axios.put(`http://localhost:8080/inventories/${id}`, inventoryObject);
+      const res = await axios.put(
+        `http://localhost:8080/inventories/${id}`,
+        inventoryObject
+      );
 
       if (res.status === 200) {
         navigate("/inventories");
@@ -83,22 +88,21 @@ const EditInventoryPage = () => {
       console.log("handleSubmit error:", error);
     }
   };
-{/******************fetching data and throwing inside the form fields by defaule ************/}
+  {
+    /******************fetching data and throwing inside the form fields by defaule ************/
+  }
   const fetchData = async () => {
     try {
-      const response = await api.get(
-        `inventories/${id}`
-      );
-      if(response.status === 200){
-        const inventoryData= response.data[0]
+      const response = await api.get(`inventories/${id}`);
+      if (response.status === 200) {
+        const inventoryData = response.data[0];
         setItemName(inventoryData.item_name);
         setCategory(inventoryData.category);
         setQuantity(inventoryData.quantity);
         setStatus(inventoryData.status);
         setDescription(inventoryData.description);
-        setWarehouseId(inventoryData.warehouse_id)
+        setWarehouseId(inventoryData.warehouse_id);
       }
-      
     } catch (error) {
       console.error(
         "Error while fetching inventory details in Edit Inventory Page",
@@ -118,99 +122,99 @@ const EditInventoryPage = () => {
     );
   };
 
-  {/******* put the data to api***********/}
-
-
-
+  {
+    /******* put the data to api***********/
+  }
 
   useEffect(() => {
+    const fetchWarehouses = async () => {
+      const data = await warehouseOptions();
+      if (data) {
+        setWarehouses(data);
+      }
+    };
+    fetchWarehouses();
     fetchData();
   }, []);
-
   return (
     <Card>
-        <div className="main__header-div">
-          <MainHeader headerTitle="Edit Inventory Item" />
-        </div>
-        <div className="main__body-container">
-          <div className="main__body">
-            <h2 className="main__h2">Item Details</h2>
+      <div className="main__header-div">
+        <MainHeader headerTitle="Edit Inventory Item" />
+      </div>
+      <div className="main__body-container">
+        <div className="main__body">
+          <h2 className="main__h2">Item Details</h2>
 
+          <TextField
+            label="Item Name"
+            value={itemName}
+            setValue={(e) => {
+              setItemName(e.target.value);
+            }}
+            error={clickSubmit && itemName === "" ? "Required" : ""}
+          />
+          <FormTextarea
+            label="Description"
+            value={description}
+            setValue={(e) => {
+              setDescription(e.target.value);
+            }}
+            error={clickSubmit && description === "" ? "Required" : ""}
+          />
+          <CategoryDropdown
+            label="Category"
+            value={category}
+            options={categoryOptions}
+            setValue={(e) => {
+              setCategory(e.target.value);
+            }}
+            error={clickSubmit && category === "" ? "Required" : ""}
+          />
+        </div>
+        <div className="main__body main__body-right">
+          <h2 className="main__h2">Item Availability</h2>
+          <RadioButtonSelection
+            checked={status}
+            onChange={handleStatusChange}
+            error={clickSubmit && status === "" ? "Status is required" : ""}
+            required
+          />
+
+          {status === "In Stock" && (
             <TextField
-              label="Item Name"
-              value={itemName}
-              setValue={(e)=>{
-                setItemName(e.target.value)
-              }}
-              error={clickSubmit && itemName==="" ? "Required" : ""}
-            />
-            <FormTextarea
-              label="Description"
-              value={description}
-              setValue={(e)=>{
-                setDescription(e.target.value)
-              }}
+              label="Quantity"
+              value={quantity}
+              setValue={(e) => setQuantity(e.target.value)}
               error={
-                clickSubmit && description==="" ? "Required" : ""
+                clickSubmit && quantity === "" ? "Quantity is required" : ""
               }
             />
-            <FormDropdown
-              label="Category"
-              value={category}
-              options={categoryOptions}
-              setValue={(e)=>{
-                setCategory(e.target.value)
-              }}
-              error={clickSubmit && category==="" ? "Required" : ""}
-            />
-          </div>
-          <div className="main__body main__body-right">
-            <h2 className="main__h2">Item Availability</h2>
-            <RadioButtonSelection
-              checked={status}
-              onChange={handleStatusChange}
-              error={
-                clickSubmit && status === ""
-                  ? "Status is required"
-                  : ""
-              }
-              required
-            />
+          )}
 
-            {status === "In Stock" && (
-              <TextField
-                label="Quantity"
-                value={quantity}
-                setValue={(e) => setQuantity(e.target.value)}
-                error={
-                  clickSubmit && quantity === ""
-                    ? "Quantity is required"
-                    : ""
-                }
-              />
-            )}
-           
-            <FormDropdown
-              label="Warehouse"
-              value={warehouse_id}
-              options={warehouseOptions}
-              setValue={(e)=>setWarehouseId(e.target.value)}
-              error={
-                clickSubmit &&
-                warehouse_id === ""
-                  ? "Required"
-                  : ""
-              }
-            />
-          </div>
+          <WarehouseDropdown
+            label="Warehouse"
+            value={warehouse_id}
+            options={warehouses}
+            setValue={(e) => setWarehouseId(e.target.value)}
+            error={clickSubmit && warehouse_id === "" ? "Required" : ""}
+          />
         </div>
-        <div className="main__button-div">
-          <div className="main__buttons">
-
-              <CancelButton text="Cancel" link="/inventories" className="main__button" />
-            <AddButton action={handleSubmit} children="Save" className="main__button" type="submit" />
-          </div>
+      </div>
+      <div className="main__button-div">
+        <div className="main__buttons">
+          <CancelButton
+            text="Cancel"
+            link="/inventories"
+            className="main__button"
+          />
+          <AddButton
+            action={handleSubmit}
+            children="Save"
+            className="main__button"
+            type="submit"
+          />
         </div>
+      </div>
     </Card>
   );
 };

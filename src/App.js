@@ -16,19 +16,19 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Header />
-        <div className="app__container">
+        <main className="app__container">
           <Routes>
             <Route path="/" element={<WarehousesPage />} />
             <Route path="/warehouses" element={<WarehousesPage />} />
             <Route path="/inventories" element={<InventoryPage />} />
             <Route path="/warehouses/add" element={<AddWarehouse />} />
             <Route path="/warehouses/edit/:warehouseID" element={<EditWarehouse />} />
+            <Route path="/inventories/add" element={<AddNewInventoryPage/>}/>
             <Route path="/warehouses/:warehouseID" element={<WarehouseDetailsPage />} />
             <Route path="/inventories/:id" element={<InventoryDetailsPage />} />
             <Route path="/inventories/:id/edit" element={<EditInventoryPage/>}/>
-            <Route path="/inventories/add" element={<AddNewInventoryPage/>}/>
           </Routes>
-        </div>
+        </main>
         <Footer />
       </BrowserRouter>
     </div>

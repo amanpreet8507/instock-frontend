@@ -4,33 +4,37 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import ItemButton from "../ItemButton/ItemButton";
 import InStockStatus from "../InStockStatus/InStockStatus";
 import OutOfStockStatus from "../OutOfStockStatus/OutOfStockStatus";
-
-const InventoryItemCard = ({category, itemName, status, quantity}) => {
-
+import { Link } from "react-router-dom";
+const InventoryItemCard = ({ id, category, itemName, status, quantity }) => {
   return (
     <>
-    {/* Mobile Breakpoints */}
+      {/* Mobile Breakpoints */}
       <div className="card">
         <div className="card__info-div">
           <div>
             <div className="card__inner-div">
               <h4 className="card__title">INVENTORY NAME</h4>
-              <ItemButton text={itemName} className='card__inner-details'/>
+              <Link to={`/inventories/${id}`}>
+                <ItemButton
+                  link="/inventories"
+                  text={itemName}
+                  className="card__inner-details"
+                />
+              </Link>
             </div>
             <div className="card__inner-div">
               <h4 className="card__title card__h4">CATEGORY</h4>
-              <p className='card__inner-details'>{category}</p>
+              <p className="card__inner-details">{category}</p>
             </div>
           </div>
           <div>
             <div className="card__inner-div card__status-qty">
               <h4 className="card__title">STATUS</h4>
-              <div className='card__inner-details'>{status}</div>
-              
+              <div className="card__inner-details">{status}</div>
             </div>
             <div className="card__inner-div">
               <h4 className="card__title card__h4">QTY</h4>
-              <p className='card__inner-details'>{quantity}</p>
+              <p className="card__inner-details">{quantity}</p>
             </div>
           </div>
         </div>
@@ -40,7 +44,6 @@ const InventoryItemCard = ({category, itemName, status, quantity}) => {
         </div>
       </div>
       {/* Tablet and desktop breakpoints */}
-      
     </>
   );
 };

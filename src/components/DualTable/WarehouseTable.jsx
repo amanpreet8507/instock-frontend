@@ -26,6 +26,7 @@ const WarehouseTable = ({ warehouseArr }) => {
     try {
       const response = await api.get("/warehouses");
       setWarehouseData(response.data);
+
     } catch (error) {
       console.error(error);
     }

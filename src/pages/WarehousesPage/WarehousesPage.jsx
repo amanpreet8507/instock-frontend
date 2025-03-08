@@ -9,7 +9,6 @@ import { useParams } from "react-router";
 
 const WarehousesPage = () => {
   const [warehouseData, setWarehouseData] = useState([]);
-  const [warehouse, setWarehouse] = useState("");
   const {id} = useParams()
   
   // Fetching Warehouses
@@ -41,7 +40,7 @@ const WarehousesPage = () => {
     <>
       <Card>
         <DualHeader
-          pageAbout={warehouse.warehouse_name}
+          pageAbout="Warehouses"
           formFieldText="Search..."
           buttonText="+ Add New Warehouse"
           link="/warehouses/add"

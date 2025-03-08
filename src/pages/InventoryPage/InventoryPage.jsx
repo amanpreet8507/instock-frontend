@@ -5,9 +5,11 @@ import DualHeader from "../../components/DualHeader/DualHeader";
 import InventoryTableList from "../../components/InventoryTableList/InventoryTableList";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router";
 
 const InventoryPage = () => {
   const [listData, setListData] = useState([])
+  const {id} = useParams()
   {/****************** Fuction to fetch Inventory List Array ********************/}
   const fetchData = async() => {
       const response = await axios.get('http://localhost:8080/inventories')
@@ -35,10 +37,10 @@ const InventoryPage = () => {
     <>
       <Card>
         <DualHeader
-          link="/inventories/add"
           pageAbout="Inventories"
           formFieldText="Search..."
           buttonText="+ Add Inventory Item"
+          link="/inventories/add"
         />
         <InventoryCardList inventoryList={listData}/>
         <InventoryTableList inventoryList={listData} />

@@ -28,7 +28,7 @@ const InventoryDetailsPage = () => {
   return (
     <Card>
       <div className="card__header">
-        {inventory && <MainHeader headerTitle={inventory.item_name} />}
+        {inventory && <MainHeader headerTitle={inventory.item_name} link="/inventories"/>}
         <Link to={`/inventories/${id}/edit`}><EditIcon/></Link>
       </div>
       <div className="card__container">
