@@ -18,6 +18,7 @@ const WarehouseDetailsCard = ({ warehouseArr }) => {
     setDeleteModal(false);
   };
   const handleDeleteModalOpen = (warehouse) => {
+    console.log("Opening modal for warehouse:", warehouse);
     setCurrentWarehouse(warehouse);
     setDeleteModal(true);
   };
@@ -37,7 +38,7 @@ const WarehouseDetailsCard = ({ warehouseArr }) => {
     <>
       {/* Mobile Breakpoints */}
       {warehouseArr.map((warehouse) => (
-        <div className="card">
+        <div className="card" key={warehouse.id}>
           <div className="card__info-div">
             <div>
               <div className="card__inner-div">
@@ -86,7 +87,7 @@ const WarehouseDetailsCard = ({ warehouseArr }) => {
           </div>
         </div>
       ))}
-     {deleteModal && (
+     {deleteModal && currentWarehouse && (
         <DeleteWarehouseModal
           onClose={handleDeleteModalClose}
           warehouse={currentWarehouse}

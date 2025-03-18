@@ -80,7 +80,7 @@ const EditWarehouse = () => {
     try {
       const res = await api.get(`/warehouses/${warehouseID}`);
       if (res.status === 200) {
-        const warehouseData = res.data[0];
+        const warehouseData = res.data;
         setWarehouseName(warehouseData.warehouse_name);
         setAddress(warehouseData.address);
         setCity(warehouseData.city);
@@ -91,7 +91,7 @@ const EditWarehouse = () => {
         setEmail(warehouseData.contact_email);
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching warehosue details on EditWarehouse page: ", error);
     }
   };
 

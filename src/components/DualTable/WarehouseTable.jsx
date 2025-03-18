@@ -8,7 +8,8 @@ import editIcon from "../../assets/icons/edit-24px.svg";
 import { Link } from "react-router-dom";
 import { api } from "../../axios/axios";
 import DeleteWarehouseModal from "../DeleteModal/DeleteWarehouseModal";
-import WarehouseTableHeadingRow from "../TableHeadingRow/WarehouseTableHeadingRow";
+import WarehouseTableHeadingRow from "../TableHeadingRow/WarehouseTableHeading";
+
 const WarehouseTable = ({ warehouseArr }) => {
   const [warehouseData, setWarehouseData] = useState([]); 
   const [deleteModal, setDeleteModal] = useState(false);
@@ -22,11 +23,12 @@ const WarehouseTable = ({ warehouseArr }) => {
     setCurrentWarehouse(warehouse);
     setDeleteModal(true);
   };
+
   const getAllWarehouses = async () => {
     try {
       const response = await api.get("/warehouses");
       setWarehouseData(response.data);
-
+      console.log('getAllWarehouses Response: ', response.data)
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +67,7 @@ const WarehouseTable = ({ warehouseArr }) => {
           </tr>
         ))}
       </table>
-      {deleteModal && (
+      {deleteModal && currentWarehouse && (
         <DeleteWarehouseModal
           onClose={handleDeleteModalClose}
           warehouse={currentWarehouse}

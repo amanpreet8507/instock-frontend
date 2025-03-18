@@ -28,14 +28,12 @@ const EditInventoryPage = () => {
   const [warehouse_id, setWarehouseId] = useState("");
   const [category, setCategory] = useState("");
   const [warehouses, setWarehouses] = useState([]);
-
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
     if (e.target.value === "Out of Stock") {
       setQuantity("");
     }
   };
-
   const categoryOptions = [
     "Electronics",
     "Apparel",
@@ -44,20 +42,22 @@ const EditInventoryPage = () => {
     "Gear",
     "Accessories",
   ];
-
   const warehouseOptions = async () => {
     try {
       const response = await api.get("/warehouses");
-      console.log(response.data);
-      return response.data.map(warehouse => ({
-        value: warehouse.id,   // warehouse ID as value
-        label: warehouse.name  // warehouse name as label
+      console.log('Warehosue options from EditInventoryPage: ', response.data);
+      return response.data.map((warehouse) => ({
+        value: warehouse.id, // warehouse ID as value
+        label: warehouse.warehouse_name // warehouse name as label
       }));
     } catch (error) {
       console.error("Error while fetching warehouseOptions:", error);
     }
   };
 
+  {
+    /****************** Edit Inventory *******************/
+  }
   const inventoryObject = {
     item_name: itemName,
     description: description,
@@ -67,20 +67,20 @@ const EditInventoryPage = () => {
     quantity: quantity,
   };
 
+  {
+    /****************** Handle Submit *********************/
+  }
   const handleSubmit = async () => {
     setClickSubmit(true);
-
     // Validate the form
     if (!validateForm()) {
       return;
     }
-
     try {
       const res = await axios.put(
         `http://localhost:8080/inventories/${id}`,
         inventoryObject
       );
-
       if (res.status === 200) {
         navigate("/inventories");
       }
@@ -88,14 +88,30 @@ const EditInventoryPage = () => {
       console.log("handleSubmit error:", error);
     }
   };
+
+  const validateForm = () => {
+    return (
+      itemName &&
+      description &&
+      category &&
+      warehouse_id &&
+      status &&
+      (status === "In Stock" || quantity)
+    );
+  };
+
+
   {
-    /******************fetching data and throwing inside the form fields by defaule ************/
+    /****************** Fetching data and throwing inside the form fields by default ************/
   }
+
   const fetchData = async () => {
     try {
       const response = await api.get(`inventories/${id}`);
+      console.log(`Fetching inventory from: http://localhost:8080/inventories/${id}`);
+
       if (response.status === 200) {
-        const inventoryData = response.data[0];
+        const inventoryData = response.data;
         setItemName(inventoryData.item_name);
         setCategory(inventoryData.category);
         setQuantity(inventoryData.quantity);
@@ -111,17 +127,7 @@ const EditInventoryPage = () => {
     }
   };
 
-  const validateForm = () => {
-    return (
-      itemName &&
-      description &&
-      category &&
-      warehouse_id &&
-      status &&
-      (status === "In Stock" || quantity)
-    );
-  };
-
+  
   {
     /******* put the data to api***********/
   }
@@ -136,10 +142,13 @@ const EditInventoryPage = () => {
     fetchWarehouses();
     fetchData();
   }, []);
+
+
+
   return (
     <Card>
       <div className="main__header-div">
-        <MainHeader headerTitle="Edit Inventory Item" />
+        <MainHeader headerTitle="Edit Inventory Item" link="http://localhost:3000/inventories" />
       </div>
       <div className="main__body-container">
         <div className="main__body">
@@ -165,9 +174,7 @@ const EditInventoryPage = () => {
             label="Category"
             value={category}
             options={categoryOptions}
-            setValue={(e) => {
-              setCategory(e.target.value);
-            }}
+            setValue={setCategory}
             error={clickSubmit && category === "" ? "Required" : ""}
           />
         </div>
@@ -195,7 +202,7 @@ const EditInventoryPage = () => {
             label="Warehouse"
             value={warehouse_id}
             options={warehouses}
-            setValue={(e) => setWarehouseId(e.target.value)}
+            setValue={setWarehouseId}
             error={clickSubmit && warehouse_id === "" ? "Required" : ""}
           />
         </div>

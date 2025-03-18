@@ -1,11 +1,10 @@
 import "./Button.scss";
-import { Link } from "react-router-dom";
 
-const AddButton = (props) => {
+const AddButton = ({ action = () => {}, children }) => {
   return (
 
-      <button className="button button__add" type="submit" onClick={props.action}>
-        {props.children}
+      <button className="button button__add" type="submit" onClick={action}>
+        {children}
       </button>
 
   );

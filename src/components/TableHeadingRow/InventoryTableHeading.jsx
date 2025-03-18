@@ -5,7 +5,7 @@ const TableHeadingRow = () => {
   return (
     <table className="table__warehouse">
       <tr className="table__row table__heading-row">
-        <TableHeading text="WAREHOUSE" />
+        <TableHeading text="INVENTORY" />
         <TableHeading text="CATEGORY" />
         <TableHeading text="STATUS"/>
         <TableHeading text="WAREHOUSE"/>
