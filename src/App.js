@@ -10,25 +10,37 @@ import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsP
 import Footer from "./components/Footer/Footer";
 import EditInventoryPage from "./pages/AddEditInventoryPages/EditInventoryPage";
 import AddNewInventoryPage from "./pages/AddEditInventoryPages/AddNewInventoryPage";
-
+import SignUpForm from "./pages/AuthPages/SignUpForm";
+import LoginForm from "./pages/AuthPages/LoginForm";
+import AuthHeader from "./components/Header/AuthHeader";
 function App() {
   return (
     <div className="app">
       <BrowserRouter>
-        <Header />
-        <main className="app__container">
+        {/* <AuthHeader /> */}
+        {/* <main className="app__container"> */}
           <Routes>
-            <Route path="/" element={<WarehousesPage />} />
+            <Route path="/" element={<SignUpForm />} />
+            <Route path="/login" element={<LoginForm />} />
             <Route path="/warehouses" element={<WarehousesPage />} />
             <Route path="/inventories" element={<InventoryPage />} />
             <Route path="/warehouses/add" element={<AddWarehouse />} />
-            <Route path="/warehouses/edit/:warehouseID" element={<EditWarehouse />} />
-            <Route path="/inventories/add" element={<AddNewInventoryPage/>}/>
-            <Route path="/warehouses/:warehouseID" element={<WarehouseDetailsPage />} />
+            <Route
+              path="/warehouses/edit/:warehouseID"
+              element={<EditWarehouse />}
+            />
+            <Route path="/inventories/add" element={<AddNewInventoryPage />} />
+            <Route
+              path="/warehouses/:warehouseID"
+              element={<WarehouseDetailsPage />}
+            />
             <Route path="/inventories/:id" element={<InventoryDetailsPage />} />
-            <Route path="/inventories/:id/edit" element={<EditInventoryPage/>}/>
+            <Route
+              path="/inventories/:id/edit"
+              element={<EditInventoryPage />}
+            />
           </Routes>
-        </main>
+        {/* </main> */}
         <Footer />
       </BrowserRouter>
     </div>

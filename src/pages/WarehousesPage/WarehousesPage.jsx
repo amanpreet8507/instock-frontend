@@ -6,11 +6,12 @@ import { useState, useEffect } from "react";
 import Card from "../../components/Card/Card";
 import axios from "axios";
 import { useParams } from "react-router";
+import Header from "../../components/Header/Header";
 
 const WarehousesPage = () => {
   const [warehouseData, setWarehouseData] = useState([]);
-  const {id} = useParams()
-  
+  const { id } = useParams();
+
   // Fetching Warehouses
   const getAllWarehouses = async () => {
     try {
@@ -20,34 +21,28 @@ const WarehousesPage = () => {
       console.error(error);
     }
   };
-  // // particular warehouse name
-  // const getWarehouseName = async () => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:8080/warehouses/${id}`);
-  //     setWarehouse(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
 
-// Using function
+
+  // Using function
   useEffect(() => {
     getAllWarehouses();
-    // getWarehouseName()
   }, []);
 
   return (
     <>
-      <Card>
-        <DualHeader
-          pageAbout="Warehouses"
-          formFieldText="Search..."
-          buttonText="+ Add New Warehouse"
-          link="/warehouses/add"
-        />
-        <WarehouseDetailsCard warehouseArr={warehouseData} />
-        <WarehouseTable warehouseArr={warehouseData} />
-      </Card>
+      <Header />
+      <main className="app__container">
+        <Card>
+          <DualHeader
+            pageAbout="Warehouses"
+            formFieldText="Search..."
+            buttonText="+ Add New Warehouse"
+            link="/warehouses/add"
+          />
+          <WarehouseDetailsCard warehouseArr={warehouseData} />
+          <WarehouseTable warehouseArr={warehouseData} />
+        </Card>
+      </main>
     </>
   );
 };

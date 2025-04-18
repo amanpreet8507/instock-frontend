@@ -12,6 +12,7 @@ import Card from "../../components/Card/Card";
 import { api } from "../../axios/axios";
 import CategoryDropdown from "../../components/FormComponents/Dropdowns/CategoryDropdown";
 import WarehouseDropdown from "../../components/FormComponents/Dropdowns/WarehouseDropdown";
+import Header from "../../components/Header/Header";
 
 const EditInventoryPage = () => {
   {
@@ -45,10 +46,10 @@ const EditInventoryPage = () => {
   const warehouseOptions = async () => {
     try {
       const response = await api.get("/warehouses");
-      console.log('Warehosue options from EditInventoryPage: ', response.data);
+      console.log("Warehosue options from EditInventoryPage: ", response.data);
       return response.data.map((warehouse) => ({
         value: warehouse.id, // warehouse ID as value
-        label: warehouse.warehouse_name // warehouse name as label
+        label: warehouse.warehouse_name, // warehouse name as label
       }));
     } catch (error) {
       console.error("Error while fetching warehouseOptions:", error);
@@ -100,7 +101,6 @@ const EditInventoryPage = () => {
     );
   };
 
-
   {
     /****************** Fetching data and throwing inside the form fields by default ************/
   }
@@ -108,7 +108,9 @@ const EditInventoryPage = () => {
   const fetchData = async () => {
     try {
       const response = await api.get(`inventories/${id}`);
-      console.log(`Fetching inventory from: http://localhost:8080/inventories/${id}`);
+      console.log(
+        `Fetching inventory from: http://localhost:8080/inventories/${id}`
+      );
 
       if (response.status === 200) {
         const inventoryData = response.data;
@@ -127,7 +129,6 @@ const EditInventoryPage = () => {
     }
   };
 
-  
   {
     /******* put the data to api***********/
   }
@@ -143,86 +144,92 @@ const EditInventoryPage = () => {
     fetchData();
   }, []);
 
-
-
   return (
-    <Card>
-      <div className="main__header-div">
-        <MainHeader headerTitle="Edit Inventory Item" link="http://localhost:3000/inventories" />
-      </div>
-      <div className="main__body-container">
-        <div className="main__body">
-          <h2 className="main__h2">Item Details</h2>
-
-          <TextField
-            label="Item Name"
-            value={itemName}
-            setValue={(e) => {
-              setItemName(e.target.value);
-            }}
-            error={clickSubmit && itemName === "" ? "Required" : ""}
-          />
-          <FormTextarea
-            label="Description"
-            value={description}
-            setValue={(e) => {
-              setDescription(e.target.value);
-            }}
-            error={clickSubmit && description === "" ? "Required" : ""}
-          />
-          <CategoryDropdown
-            label="Category"
-            value={category}
-            options={categoryOptions}
-            setValue={setCategory}
-            error={clickSubmit && category === "" ? "Required" : ""}
-          />
-        </div>
-        <div className="main__body main__body-right">
-          <h2 className="main__h2">Item Availability</h2>
-          <RadioButtonSelection
-            checked={status}
-            onChange={handleStatusChange}
-            error={clickSubmit && status === "" ? "Status is required" : ""}
-            required
-          />
-
-          {status === "In Stock" && (
-            <TextField
-              label="Quantity"
-              value={quantity}
-              setValue={(e) => setQuantity(e.target.value)}
-              error={
-                clickSubmit && quantity === "" ? "Quantity is required" : ""
-              }
+    <>
+      <Header />
+      <main className="app__container">
+        <Card>
+          <div className="main__header-div">
+            <MainHeader
+              headerTitle="Edit Inventory Item"
+              link="http://localhost:3000/inventories"
             />
-          )}
+          </div>
+          <div className="main__body-container">
+            <div className="main__body">
+              <h2 className="main__h2">Item Details</h2>
 
-          <WarehouseDropdown
-            label="Warehouse"
-            value={warehouse_id}
-            options={warehouses}
-            setValue={setWarehouseId}
-            error={clickSubmit && warehouse_id === "" ? "Required" : ""}
-          />
-        </div>
-      </div>
-      <div className="main__button-div">
-        <div className="main__buttons">
-          <CancelButton
-            text="Cancel"
-            link="/inventories"
-            className="main__button"
-          />
-          <AddButton
-            action={handleSubmit}
-            children="Save"
-            className="main__button"
-            type="submit"
-          />
-        </div>
-      </div>
-    </Card>
+              <TextField
+                label="Item Name"
+                value={itemName}
+                setValue={(e) => {
+                  setItemName(e.target.value);
+                }}
+                error={clickSubmit && itemName === "" ? "Required" : ""}
+              />
+              <FormTextarea
+                label="Description"
+                value={description}
+                setValue={(e) => {
+                  setDescription(e.target.value);
+                }}
+                error={clickSubmit && description === "" ? "Required" : ""}
+              />
+              <CategoryDropdown
+                label="Category"
+                value={category}
+                options={categoryOptions}
+                setValue={setCategory}
+                error={clickSubmit && category === "" ? "Required" : ""}
+              />
+            </div>
+            <div className="main__body main__body-right">
+              <h2 className="main__h2">Item Availability</h2>
+              <RadioButtonSelection
+                checked={status}
+                onChange={handleStatusChange}
+                error={clickSubmit && status === "" ? "Status is required" : ""}
+                required
+              />
+
+              {status === "In Stock" && (
+                <TextField
+                  label="Quantity"
+                  value={quantity}
+                  setValue={(e) => setQuantity(e.target.value)}
+                  error={
+                    clickSubmit && quantity === "" ? "Quantity is required" : ""
+                  }
+                />
+              )}
+
+              <WarehouseDropdown
+                label="Warehouse"
+                value={warehouse_id}
+                options={warehouses}
+                setValue={setWarehouseId}
+                error={clickSubmit && warehouse_id === "" ? "Required" : ""}
+              />
+            </div>
+          </div>
+          <div className="main__button-div">
+            <div className="main__buttons">
+              <CancelButton
+                text="Cancel"
+                link="/inventories"
+                className="main__button"
+              />
+              <AddButton
+                action={handleSubmit}
+                children="Save"
+                className="main__button"
+                type="submit"
+              />
+            </div>
+          </div>
+        </Card>
+      </main>
+    </>
   );
 };
 

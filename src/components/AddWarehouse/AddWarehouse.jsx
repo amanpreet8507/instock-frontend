@@ -7,6 +7,7 @@ import AddButton  from "../Buttons/AddButton";
 import CancelButton  from "../Buttons/CancelButton";
 import Card from "../Card/Card";
 import {Link, useNavigate} from "react-router-dom"
+import Header from "../Header/Header";
 
 const phoneNumberRegex = /^\d{10}$/; 
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -77,6 +78,9 @@ const AddWarehouse = ({ onCancel }) => {
   };
 
   return (
+    <>
+    <Header/>
+      <main className="app__container">
     <div className="addWarehouse">
       <Card>
         <div className="addWarehouse__header">
@@ -176,6 +180,8 @@ const AddWarehouse = ({ onCancel }) => {
         </div>
       </Card>
     </div>
+    </main>
+    </>
   );
 };
 

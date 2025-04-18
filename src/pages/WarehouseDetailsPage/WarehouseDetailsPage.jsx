@@ -10,6 +10,7 @@ import InventoryTableList from "../../components/InventoryTableList/InventoryTab
 import EditIcon from "../../components/MainHeader/EditIcon";
 import Card from "../../components/Card/Card";
 import { Link } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 const WarehouseDetailsPage = () => {
   const [warehouseInventoryArr, setWarehouseInventoryArr] = useState([]);
@@ -56,22 +57,27 @@ const WarehouseDetailsPage = () => {
 
   return (
     <>
-      <Card>
-        <div className="main__header-div">
-          <MainHeader
-            link="/warehouses"
-            headerTitle={
-              warehouseAddress ? warehouseAddress.warehouse_name : "Loading..."
-            }
-          />
-          <Link to={`/warehouses/edit/${warehouseID}`}>
-            <EditIcon />
-          </Link>
-        </div>
-        <AddressCard location={warehouseAddress} />
-        <InventoryCardList inventoryList={warehouseInventoryArr} />
-        <InventoryTableList inventoryList={warehouseInventoryArr} />
-      </Card>
+      <Header />
+      <main className="app__container">
+        <Card>
+          <div className="main__header-div">
+            <MainHeader
+              link="/warehouses"
+              headerTitle={
+                warehouseAddress
+                  ? warehouseAddress.warehouse_name
+                  : "Loading..."
+              }
+            />
+            <Link to={`/warehouses/edit/${warehouseID}`}>
+              <EditIcon />
+            </Link>
+          </div>
+          <AddressCard location={warehouseAddress} />
+          <InventoryCardList inventoryList={warehouseInventoryArr} />
+          <InventoryTableList inventoryList={warehouseInventoryArr} />
+        </Card>
+      </main>
     </>
   );
 };
