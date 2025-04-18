@@ -6,7 +6,7 @@ const MainHeader = (props) => {
   return (
     <>
       <div className="header__icon-and-heading">
-        <Link to={props.linl} className="header__link">
+        <Link to={props.link} className="header__link">
           <img className="header__arrow-icon" src={arrowBackIcon}></img>
         </Link>
         <h1>{props.headerTitle}</h1>

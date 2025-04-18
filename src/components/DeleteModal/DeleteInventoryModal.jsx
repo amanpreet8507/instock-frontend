@@ -2,10 +2,11 @@ import "./DeleteModal.scss";
 import closeImage from "../../assets/icons/close-24px.svg";
 import { api } from "../../axios/axios";
 
-const DeleteInventoryModal = ({ onClose, warehouse }) => {
+const DeleteInventoryModal = ({ onClose, inventory }) => {
   const handleDelete = async () => {
+    console.log("Inventory object:", inventory);
     try {
-      const res = await api.delete(`/inventories/${warehouse.id}`);
+      const res = await api.delete(`/inventories/${inventory.id}`);
       if (res.status === 204) {
         onClose();
         window.location.reload();
@@ -21,10 +22,10 @@ const DeleteInventoryModal = ({ onClose, warehouse }) => {
           <div className="deleteModal__close" onClick={onClose}>
             <img src={closeImage} alt="delete" />
           </div>
-          <h1>Delete {warehouse.warehouse_name} Inventory ?</h1>
+          <h1>Delete {inventory.item_name} Inventory ?</h1>
           <p>
-            Please confirm that you'd like to delete the{" "}
-            {warehouse.warehouse_name} from the list of inventory. You won't be
+            Please confirm that you'd like to delete the {" "}
+            {inventory.item_name} from the list of inventory. You won't be
             able to undo this action.
           </p>
         </div>

@@ -1,0 +1,66 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/global" as *;
+@use "../../styles/partials/mixins" as *;
+
+.login-container {
+
+  @include tablet {
+    padding: 3rem;
+  }
+
+  @include desktop {
+    padding: 4rem;
+  }
+}
+
+.signup-form {
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 28rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h2 {
+    color: $black;
+  }
+
+  label {
+    font-size: 1rem;
+    color: $slate;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  input {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    border: 1px solid $cloud;
+    font-size: 1rem;
+    background-color: $white;
+
+    &:focus {
+      outline: none;
+      border-color: $indigo;
+      box-shadow: 0 0 0 2px rgba($indigo, 0.2);
+    }
+  }
+
+  .button {
+    margin-top: 1rem;
+  }
+
+  a {
+    text-align: center;
+    text-decoration: none;
+    color: $indigo;
+    font-weight: 500;
+    font-size: 0.9rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

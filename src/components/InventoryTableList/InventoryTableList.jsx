@@ -1,7 +1,7 @@
 import InventoryTable from "../DualTable/InventoryTable";
 import InStockStatus from "../InStockStatus/InStockStatus";
 import OutOfStockStatus from "../OutOfStockStatus/OutOfStockStatus";
-import TableHeadingRow from "../TableHeadingRow/TableHeadingRow";
+import TableHeadingRow from "../TableHeadingRow/InventoryTableHeading";
 
 const InventoryCardList = ({ inventoryList }) => {
   return (

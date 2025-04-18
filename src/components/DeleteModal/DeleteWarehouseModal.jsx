@@ -1,9 +1,11 @@
 import "./DeleteModal.scss";
 import closeImage from "../../assets/icons/close-24px.svg";
 import { api } from "../../axios/axios";
+import PropTypes from 'prop-types';
 
 const DeleteWarehouseModal = ({ onClose, warehouse }) => {
   const handleDelete = async () => {
+     console.log('warehouse: ',warehouse)
     try {
       const res = await api.delete(`/warehouses/${warehouse.id}`);
       if (res.status === 204) {
@@ -21,10 +23,10 @@ const DeleteWarehouseModal = ({ onClose, warehouse }) => {
           <div className="deleteModal__close" onClick={onClose}>
             <img src={closeImage} alt="delete" />
           </div>
-          <h1>Delete {warehouse.warehouse_name} warehouse ?</h1>
+          <h1>Delete {warehouse?.warehouse_name || "this"} warehouse?</h1>
           <p>
             Please confirm that you'd like to delete the{" "}
-            {warehouse.warehouse_name} from the list of warehouses. You won't be
+            {warehouse.warehouse_name || "selected warehouse "} from the list of warehouses. You won't be
             able to undo this action.
           </p>
         </div>
@@ -39,6 +41,14 @@ const DeleteWarehouseModal = ({ onClose, warehouse }) => {
       </div>
     </div>
   );
+};
+
+DeleteWarehouseModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  warehouse: PropTypes.shape({
+    id: PropTypes.string,
+    warehouse_name: PropTypes.string,
+  }),
 };
 
 export default DeleteWarehouseModal

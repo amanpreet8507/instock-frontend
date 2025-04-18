@@ -8,7 +8,10 @@ const FormTextarea = ({ label, value = "", setValue, error = "" }) => {
         type="text"
         placeholder={label}
         value={value}
-        onChange={setValue}
+        onChange={(e) => {
+          console.log(`Textarea value changed: ${e.target.value}`);
+          setValue(e);
+        }}
       />
       {error !== "" && <p className="textfield__error">{error}</p>}
     </div>

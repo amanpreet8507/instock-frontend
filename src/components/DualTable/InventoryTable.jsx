@@ -2,14 +2,21 @@ import "../TableHeading/TableHeading";
 import ItemButton from "../ItemButton/ItemButton";
 import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 import editIcon from "../../assets/icons/edit-24px.svg";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./DualTable.scss";
 import { useEffect, useState } from "react";
-import DeleteWarehouseModal from "../DeleteModal/DeleteWarehouseModal";
 import axios from "axios";
+import DeleteInventoryModal from "../DeleteModal/DeleteInventoryModal";
+import { api } from "../../axios/axios";
 
-const InventoryTable = ({ id, category, itemName, status, quantity, warehouseId }) => {
-  //const { id } = useParams();
+const InventoryTable = ({
+  id,
+  category,
+  itemName,
+  status,
+  quantity,
+  warehouseId,
+}) => {
   const [warehouseName, setWarehouseName] = useState("");
   const [deleteModal, setDeleteModal] = useState(false);
   const [currentInventory, setCurrentInventory] = useState(null);
@@ -20,38 +27,60 @@ const InventoryTable = ({ id, category, itemName, status, quantity, warehouseId 
   };
 
   const handleDeleteModalOpen = (inventory) => {
-    setCurrentInventory(inventory);
+    if (!inventory) return;
+  
+    // Ensure warehouse_name is included (fetch if needed)
+    const updatedInventory = {
+      ...inventory,
+      warehouse_name: warehouseName || "Unknown Warehouse", // Provide fallback
+    };
+  
+    setCurrentInventory(updatedInventory);
     setDeleteModal(true);
   };
 
   useEffect(() => {
     const fetchWarehouseName = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/inventories/${id}`);
+        const response = await api.get(
+          `inventories/${id}`
+        );
         setWarehouseName(response.data.warehouse_name);
+        setCurrentInventory(response.data);
       } catch (error) {
         console.error("Error fetching warehouse name:", error);
       }
     };
 
     fetchWarehouseName();
-  }, [warehouseId]);
+  }, [id]);
 
   return (
     <>
       <table className="table__warehouse">
         <tr className="table__row">
-          <td className="table__data table__data-1">
+          <td className="table__data table__data-1" key={id}>
             <Link to={`/inventories/${id}`}>
               <ItemButton text={itemName} />
             </Link>
           </td>
-          <td className="table__data table__data-middle table__data-item">{category}</td>
-          <td className="table__data table__data-middle table__data-status table__data-item">{status}</td>
-          <td className="table__data table__data-middle table__data-item">{warehouseName}</td>
-          <td className="table__data table__data-middle table__data-item">{quantity}</td>
+          <td className="table__data table__data-middle table__data-item">
+            {category}
+          </td>
+          <td className="table__data table__data-middle table__data-status table__data-item">
+            {status}
+          </td>
+          <td className="table__data table__data-middle table__data-item">
+            {warehouseName}
+          </td>
+          <td className="table__data table__data-middle table__data-item">
+            {quantity}
+          </td>
           <td className="table__data table__data-last">
-            <img src={deleteIcon} onClick={() => handleDeleteModalOpen(warehouseId)} />
+            <img
+              src={deleteIcon}
+              onClick={() => handleDeleteModalOpen({ id, item_name: itemName })}
+            />
             <Link to={`/inventories/${id}/edit`}>
               <img src={editIcon} />
             </Link>
@@ -59,7 +88,10 @@ const InventoryTable = ({ id, category, itemName, status, quantity, warehouseId 
         </tr>
       </table>
       {deleteModal && (
-        <DeleteWarehouseModal onClose={handleDeleteModalClose} inventory={currentInventory} />
+        <DeleteInventoryModal
+          onClose={handleDeleteModalClose}
+          inventory={currentInventory}
+        />
       )}
     </>
   );
