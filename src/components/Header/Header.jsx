@@ -24,7 +24,7 @@ const Header = () => {
           <NavLink to="/inventories">Inventory</NavLink>
         </li>
         <li className="header__nav--list">
-          <NavLink to="/">Sign Out</NavLink>
+          <NavLink to="/login">Sign Out</NavLink>
         </li>
       </nav>
     </div>
