@@ -23,7 +23,7 @@ const WarehouseDetailsPage = () => {
 
   const fetchInventories = async () => {
     const response = await api.get(
-      `http://localhost:8080/warehouses/${warehouseID}/inventories`
+      `/warehouses/${warehouseID}/inventories`
     );
     const warehouseInventory = response.data;
     setWarehouseInventoryArr(warehouseInventory);
@@ -35,8 +35,8 @@ const WarehouseDetailsPage = () => {
   }
 
   const fetchWarehouseAddress = async () => {
-    const response = await axios.get(
-      `http://localhost:8080/warehouses/${warehouseID}`
+    const response = await api.get(
+      `/warehouses/${warehouseID}`
     );
     const addressDetails = response.data;
     setWarehouseAddress(addressDetails);

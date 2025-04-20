@@ -78,8 +78,8 @@ const EditInventoryPage = () => {
       return;
     }
     try {
-      const res = await axios.put(
-        `http://localhost:8080/inventories/${id}`,
+      const res = await api.put(
+        `/inventories/${id}`,
         inventoryObject
       );
       if (res.status === 200) {

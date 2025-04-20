@@ -1,7 +1,6 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage";
-import Header from "./components/Header/Header";
 import AddWarehouse from "./components/AddWarehouse/AddWarehouse";
 import EditWarehouse from "./components/EditWarehouse/EditWarehouse";
 import InventoryPage from "./pages/InventoryPage/InventoryPage";
@@ -12,7 +11,7 @@ import EditInventoryPage from "./pages/AddEditInventoryPages/EditInventoryPage";
 import AddNewInventoryPage from "./pages/AddEditInventoryPages/AddNewInventoryPage";
 import SignUpForm from "./pages/AuthPages/SignUpForm";
 import LoginForm from "./pages/AuthPages/LoginForm";
-import AuthHeader from "./components/Header/AuthHeader";
+
 function App() {
   return (
     <div className="app">

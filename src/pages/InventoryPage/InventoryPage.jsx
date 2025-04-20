@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
 import Header from "../../components/Header/Header";
+import { api } from "../../axios/axios";
+
 const InventoryPage = () => {
   const [listData, setListData] = useState([]);
   const { id } = useParams();
@@ -14,8 +16,8 @@ const InventoryPage = () => {
     /****************** Fuction to fetch Inventory List Array ********************/
   }
   const fetchData = async () => {
-    const response = await axios.get("http://localhost:8080/inventories");
-    const response2 = await axios.get(`http://localhost:8080/warehouses`);
+    const response = await api.get("/inventories");
+    const response2 = await api.get(`/warehouses`);
     const data1 = response.data.map((item) => item.warehouse_id);
     const data2 = response2.data.map((item) => item.id);
     // Compare the arrays and append if equal

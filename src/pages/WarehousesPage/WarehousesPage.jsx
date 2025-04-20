@@ -7,6 +7,7 @@ import Card from "../../components/Card/Card";
 import axios from "axios";
 import { useParams } from "react-router";
 import Header from "../../components/Header/Header";
+import { api } from "../../axios/axios";
 
 const WarehousesPage = () => {
   const [warehouseData, setWarehouseData] = useState([]);
@@ -15,7 +16,7 @@ const WarehousesPage = () => {
   // Fetching Warehouses
   const getAllWarehouses = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/warehouses");
+      const response = await api.get("/warehouses");
       setWarehouseData(response.data);
     } catch (error) {
       console.error(error);

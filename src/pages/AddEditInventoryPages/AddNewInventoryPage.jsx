@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Header from "../../components/Header/Header";
 
+
 const AddNewInventoryPage = () => {
   const [warehouses, setWarehouses] = useState([]);
   //const [warehouseIDs, setWarehouseID] = useState([]);
@@ -27,7 +28,7 @@ const AddNewInventoryPage = () => {
 
   const getAllWarehouses = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/warehouses");
+      const response = await api.get("/warehouses");
       setWarehouses(response.data);
       console.log("response.data", response.data);
     } catch (error) {

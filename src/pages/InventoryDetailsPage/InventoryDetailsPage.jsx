@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import MainHeader from "../../components/MainHeader/MainHeader";
 import Card from "../../components/Card/Card";
-import axios from "axios";
+import {api} from "../../axios/axios";
 import "./InventoryDetailsPage.scss";
 import InStockStatus from "../../components/InStockStatus/InStockStatus";
 import OutOfStockStatus from "../../components/OutOfStockStatus/OutOfStockStatus";
@@ -16,8 +16,8 @@ const InventoryDetailsPage = () => {
   useEffect(() => {
     const fetchInventoryDetails = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:8080/inventories/${id}`
+        const response = await api.get(
+          `/inventories/${id}`
         );
         setInventory(response.data);
       } catch (error) {
